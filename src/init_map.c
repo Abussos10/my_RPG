@@ -33,10 +33,10 @@ void screenopen(global_t *ALL)
 
 int usage(int ac, char **av, global_t *ALL)
 {
-    if (ac == 2 && my_strcmp(av[1], "-h") == 0) {
-        write(1, "Air traffic simulation panel\n\n", 31);
-        write(1, "USAGE\n\t./my_radar [OPTIONS] path_to_script\n", 44);
-        write(1, "\t path_to_script\tThe path to the script file.\n\n", 48);
+    if (ac == 2 && strcmp(av[1], "-h") == 0) {
+        write(1, "Welcome to our game rpg !\n\n", 28);
+        write(1, "USAGE\n\t./my_rpg and ./my_rpg -h\n", 33);
+        write(1, "\t my_rpg \tThe executable for the game\n\n", 40);
         write(1, "OPTIONS\n\t-h\t\tprint the usage and quit.\n\n", 41);
         write(1, "USER INTERACTIONS\n\t'L' key\t", 28);
         write(1, "enable/disable hitboxes and areas.\n", 36);
