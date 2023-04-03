@@ -21,10 +21,12 @@ CFLAGS	= 	-I ./include
 
 CERROR	=	-W -Wextra -Werror
 
+CSFML	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
+
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(GCC) $(CFLAGS) $(CERROR) $(SRC) -o $(NAME)
+	$(GCC) $(CFLAGS) $(CERROR) $(SRC) -o $(NAME) $(CSFML)
 
 clean:
 	$(RM) $(OBJ)
