@@ -10,12 +10,14 @@ NAME	=	my_rpg
 RM		=	rm -rf
 
 SRC		=	./src/main.c			\
+			./src/lib_functions.c 	\
+			./src/init_map.c
 
 OBJ		=	$(SRC:.c=.o)
 
-GCC		=	gcc -c
+GCC		=	gcc
 
-CFLAGS	= 	-I./include
+CFLAGS	= 	-I ./include
 
 CERROR	=	-W -Wextra -Werror
 
