@@ -25,8 +25,8 @@
 
 #define sfCff sfTexture_createFromFile
 #define sfRWc sfRenderWindow_create
-#define WIN ALL->settings.window
-#define MODE ALL->settings.mode
+#define WIN all->settings.window
+#define MODE all->settings.mode
 #define SETEXT sfSprite_setTexture
 #define SETSCALE sfSprite_setScale
 #define SETPOS sfSprite_setPosition
@@ -42,6 +42,7 @@ typedef struct map_s{
     sfSprite *sprite;
     sfVector2f scale;
     sfVector2f pos;
+    float speed;
 }map_t;
 
 typedef struct global_s{
@@ -55,3 +56,8 @@ void eventclose(global_t *ALL);
 void screenopen(global_t *ALL);
 void init_window(global_t *ALL);
 int usage(int ac, char **av, global_t *ALL);
+void init_scale(global_t *all);
+void init_pos(global_t *all);
+void init_setsprite(global_t *all);
+void init_sprite(global_t *all);
+void move_sprites(global_t *all);
