@@ -28,6 +28,8 @@ void screenopen(global_t *all)
         &(all->settings.event))) {
             eventclose(all);
         }
+        move_sprites(all);
+        SETPOS(all->picture[1]->sprite, all->picture[1]->pos);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,

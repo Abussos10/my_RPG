@@ -30,6 +30,7 @@
 #define SETEXT sfSprite_setTexture
 #define SETSCALE sfSprite_setScale
 #define SETPOS sfSprite_setPosition
+#define KEYPRESSED sfKeyboard_isKeyPressed
 
 typedef struct window_s{
     sfVideoMode mode;
@@ -60,4 +61,4 @@ void init_scale(global_t *all);
 void init_pos(global_t *all);
 void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
-void move_sprites(global_t *all);
+int move_sprites(global_t *all);

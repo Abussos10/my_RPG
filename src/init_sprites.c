@@ -25,7 +25,7 @@ void init_setsprite(global_t *all)
     SETSCALE(all->picture[0]->sprite, all->picture[0]->scale);
     SETEXT(all->picture[1]->sprite, all->picture[1]->texture, sfTrue);
     SETSCALE(all->picture[1]->sprite, all->picture[1]->scale);
-    SETPOS(all->picture[1]->sprite, all->picture[1]->pos);
+    //SETPOS(all->picture[1]->sprite, all->picture[1]->pos);
 }
 
 void init_sprite(global_t *all)
@@ -37,21 +37,4 @@ void init_sprite(global_t *all)
     all->picture[1] = malloc(sizeof(map_t));
     all->picture[1]->texture = sfCff("./pic/megaman.png", NULL);
     all->picture[1]->sprite = sfSprite_create();
-}
-
-void move_sprites(global_t *all)
-{
-    all->picture[1]->speed = 5;
-    if (sfKeyboard_isKeyPressed(sfKeyLeft)) 
-        all->picture[1]->pos.x -= all->picture[1]->speed;
-    if (sfKeyboard_isKeyPressed(sfKeyUp))
-        all->picture[1]->pos.y -= all->picture[1]->speed;
-    if (sfKeyboard_isKeyPressed(sfKeyRight))
-        all->picture[1]->pos.x += all->picture[1]->speed;
-    if (sfKeyboard_isKeyPressed(sfKeyDown))
-        all->picture[1]->pos.y += all->picture[1]->speed;
-
-    SETPOS(all->picture[1]->sprite, all->picture[1]->pos);
-    sfRenderWindow_drawSprite(all->settings.window, all->picture[1]->sprite, NULL);
-    sfRenderWindow_display(all->settings.window);
 }
