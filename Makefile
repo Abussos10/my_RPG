@@ -10,7 +10,6 @@ NAME	=	my_rpg
 RM		=	rm -rf
 
 SRC		=	./src/main.c				\
-			./src/lib_functions.c 		\
 			./src/init_map.c			\
 			./src/init_sprites.c		\
 			./src/players_movements.c
