@@ -10,9 +10,9 @@ NAME	=	my_rpg
 RM		=	rm -rf
 
 SRC		=	./src/main.c				\
-			./src/init_map.c			\
+			./src/map/init_map.c			\
 			./src/init_sprites.c		\
-			./src/players_movements.c
+			./src/perso/players_movements.c	\
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -27,13 +27,17 @@ CSFML	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
+	@echo "\e[1;30mcompilation status:\e[0m" "\e[1;33m[ENGAGED] \e[0m"
 	$(GCC) $(CFLAGS) $(CERROR) $(SRC) -o $(NAME) $(CSFML)
+	@echo "\e[1;30mcompilation status: \e[0m" "\e[1;32m[OK] \e[0m"
 
 clean:
+	@echo "\e[1;30mclean status:\e[0m" "\e[1;33m[ENGAGED] \e[0m"
 	$(RM) $(OBJ)
-
+	@echo "\e[1;30mclean status:\e[0m" "\e[1;32m[OK] \e[0m"
 fclean: clean
 	$(RM) $(NAME)
+	@echo "\e[1;30mfclean status:\e[0m" "\e[1;32m[OK] \e[0m"
 
 re: fclean all
 
