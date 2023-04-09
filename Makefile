@@ -29,7 +29,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	@echo "\e[1;30mcompilation status:\e[0m" "\e[1;33m[ENGAGED] \e[0m"
 	$(GCC) $(CFLAGS) $(CERROR) $(SRC) -o $(NAME) $(CSFML)
-	@echo "\e[1;30mcompilation status: \e[0m" "\e[1;32m[OK] \e[0m"
+	@echo "\e[1;30mcompilation satuts: \e[0m" "\e[1;32m[OK] \e[0m"
 
 clean:
 	@echo "\e[1;30mclean status:\e[0m" "\e[1;33m[ENGAGED] \e[0m"
