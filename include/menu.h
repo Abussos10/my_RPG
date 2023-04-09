@@ -5,5 +5,4 @@
 ** menu
 */
 
-#include "../../include/rpg.h"
-
+#pragma once
