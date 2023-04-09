@@ -6,3 +6,8 @@
 */
 
 #pragma once
+
+typedef struct menu_s {
+    
+
+}menu_t;
