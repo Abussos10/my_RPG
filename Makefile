@@ -12,7 +12,9 @@ RM		=	rm -rf
 SRC		=	./src/main.c				\
 			./src/init_map.c			\
 			./src/init_sprites.c		\
-			./src/players_movements.c
+			./src/players_movements.c	\
+			./src/map/test.c 				\
+			./src/map/init_map.clean		\
 
 OBJ		=	$(SRC:.c=.o)
 
