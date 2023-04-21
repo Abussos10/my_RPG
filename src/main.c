@@ -23,7 +23,7 @@ int usage(int ac, char **av, global_t *all)
         init_scale(all);
         init_pos(all);
         init_setsprite(all);
-        run();
+        //run();
     }
     return 0;
 }
