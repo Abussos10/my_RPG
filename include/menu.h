@@ -38,6 +38,18 @@ typedef struct button_s {
     sfTexture *bplay_tx;
     sfSprite *bset_s;
     sfTexture *bset_tx;
+    sfTexture *map1bw_tx;
+    sfSprite *map1_s;
+    sfTexture *map1_tx;
+    sfTexture *cavemask_tx;
+    sfTexture *cave_tx;
+    sfSprite *cave_s;
+    sfTexture *housemask_tx;
+    sfSprite  *house_s;
+    sfTexture *house_tx;
+    sfTexture *map_tx;
+    sfSprite *map_s;
+    sfTexture *mapmask_tx;
 }button_t;
 
 typedef struct menu_s {
