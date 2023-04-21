@@ -35,8 +35,9 @@
 #define SETSCALE sfSprite_setScale
 #define SETPOS sfSprite_setPosition
 #define KEYPRESSED sfKeyboard_isKeyPressed
+#define BOUNDS sfSprite_getGlobalBounds
 
-// 
+//
 #define BUTTON_START
 #define BUTTON_RESUME
 #define BUTTON_SETTINGS
@@ -98,17 +99,11 @@ typedef struct object_s {
     // inventaire.c
 
 // src/menu/ :
-
     // menu.c
     void open_main_menu(global_t *all);
-
-
 // src/perso/ :
-
     // players_movements.c
     int move_sprites(global_t *all);
-
-
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
 void eventclose(global_t *ALL);
