@@ -5,6 +5,8 @@
 ** rpg.h
 */
 
+#ifndef MY_H_
+
 #pragma once
     #include <unistd.h>
     #include <stdio.h>
@@ -63,6 +65,22 @@ typedef struct global_s{
 } global_t;
 
 
+typedef struct {
+    sfTexture* texture1;
+    sfTexture* texture2;
+    sfTexture* texture3;
+    sfTexture* texture4;
+    sfTexture *texture5;
+    sfTexture *texture6;
+    sfTexture *texture7;
+    sfTexture *texture8;
+    sfTexture *texture9;
+    sfTexture *texture10;
+    sfTexture *texture11;
+    sfTexture *texture12;
+    sfTexture *texture13;
+} TextureSprite;
+
 
 // src/main.c :
 
@@ -101,3 +119,33 @@ typedef struct global_s{
 
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
+
+
+//haut
+    void checksprite2(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+    void destroySprites2(sfSprite* sprite, TextureSprite *Textures);
+    void loadSprites2(sfSprite** sprite, TextureSprite *Textures);
+    void changeSprite2(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+//droite
+    void changeSprite3(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+    void loadSprites3(sfSprite** sprite, TextureSprite *Textures);
+    void destroySprites3(sfSprite* sprite, TextureSprite *Textures);
+    void checksprite3(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+//gauche
+    void changeSprite4(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+    void loadSprites4(sfSprite** sprite, TextureSprite *Textures);
+    void destroySprites4(sfSprite* sprite, TextureSprite *Textures);
+    void checksprite4(sfClock* clock, sfSprite* sprite,
+    TextureSprite *Textures);
+//mouvement
+    void deplacer_sprite(sfSprite* sprite, float vitesse);
+
+
+void run();
+
+#endif /* !MY_H_ */
