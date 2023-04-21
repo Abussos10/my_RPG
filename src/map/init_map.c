@@ -40,6 +40,6 @@ void screenopen(global_t *all)
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->picture[1]->sprite, NULL);
-        sfRenderWindow_display(all->settings.window);   
+        sfRenderWindow_display(all->settings.window);
     }
 }

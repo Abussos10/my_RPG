@@ -32,7 +32,7 @@ void init_sprite(global_t *all)
 {
     all->picture = malloc(sizeof(map_t) * 2);
     all->picture[0] = malloc(sizeof(map_t));
-    all->picture[0]->texture = sfCff("./sprites/pic/map1.png", NULL);
+    all->picture[0]->texture = sfCff("./sprites/pic/map.png", NULL);
     all->picture[0]->sprite = sfSprite_create();
     all->picture[1] = malloc(sizeof(map_t));
     all->picture[1]->texture = sfCff("./sprites/pic/megaman.png", NULL);

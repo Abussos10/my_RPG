@@ -34,6 +34,7 @@ int main(int ac, char **av)
     menu_t *menu = malloc(sizeof(menu_t));
     window_t *window = malloc(sizeof(window_t));
     menu->but = malloc(sizeof(button_t));
+    object_t *player = malloc(sizeof(object_t));
     usage(ac, av, all);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);
