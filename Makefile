@@ -13,16 +13,11 @@ SRC		=	./src/main.c				\
 			./src/map/init_map.c			\
 			./src/init_sprites.c		\
 			./src/perso/players_movements.c	\
-			./src/perso/mouvbas.c \
-			./src/perso/mouvdroite.c \
-			./src/perso/mouvgauche.c \
-			./src/perso/mouvhaut.c \
-			./src/perso/mouvement.c \
-      ./src/menu/menu.c 				\
+     		./src/menu/menu.c 				\
 			./src/menu/init_sprite.c		\
 			./src/menu/init_music.c			\
 			./src/menu/draw.c 				\
-			./src/menu/button.c 			\
+			./src/menu/button.c
 
 OBJ		=	$(SRC:.c=.o)
 
