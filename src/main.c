@@ -30,8 +30,12 @@ int usage(int ac, char **av, global_t *all)
 int main(int ac, char **av)
 {
     global_t *all = malloc(sizeof(global_t));
+    menu_t *menu = malloc(sizeof(menu_t));
+    window_t *window = malloc(sizeof(window_t));
+    menu->but = malloc(sizeof(button_t));
     usage(ac, av, all);
     if (!(all->settings.window)) return 84;
+    menu_loop(menu, window, all);
     screenopen(all);
     free(all);
     return (0);
