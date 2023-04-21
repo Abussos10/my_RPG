@@ -47,35 +47,28 @@ void checksprite(sfClock* clock, sfSprite* sprite, TextureSprite* Textures)
 }
 
 
-void run(void)
+void run(global_t *glob)
 {
     TextureSprite Textures;
-    sfVideoMode mode = { 640, 480, 32 };
-    sfRenderWindow* window;
     sfClock* clock;
     sfSprite* sprite;
     sfEvent event;
     float vitesse = 0.1;
-    window = sfRenderWindow_create(mode, "mouvement",
-        sfResize | sfClose, NULL);
     clock = sfClock_create();
-    loadSprites(&sprite, &Textures);
-    loadSprites2(&sprite, &Textures);
-    loadSprites3(&sprite, &Textures);
-    loadSprites4(&sprite, &Textures);
-    while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, &event)) {
+
+    while (sfRenderWindow_isOpen(glob->settings.window)) {
+        sfRenderWindow_clear(glob->settings.window, sfBlack);
+        while (sfRenderWindow_pollEvent(glob->settings.window, &event)) {
             if (event.type == sfEvtClosed)
-                sfRenderWindow_close(window);
+                sfRenderWindow_close(glob->settings.window);
         }
-        checksprite(clock, sprite, &Textures); 
-        checksprite2(clock, sprite, &Textures);
-        checksprite3(clock, sprite, &Textures);
-        checksprite4(clock, sprite, &Textures);
+        checksprite(clock, sprite, Textures); 
+        checksprite2(clock, sprite, Textures);
+        checksprite3(clock, sprite, Textures);
+        checksprite4(clock, sprite, Textures);
         deplacer_sprite(sprite, vitesse);
-        sfRenderWindow_clear(window, sfBlack);
-        sfRenderWindow_drawSprite(window, sprite, NULL);
-        sfRenderWindow_display(window);
+        sfRenderWindow_drawSprite(glob->settings.window, sprite, NULL);
+        sfRenderWindow_display(glob->settings.window);
     }
     destroySprites(sprite, &Textures);
     destroySprites2(sprite, &Textures);
