@@ -51,6 +51,7 @@ typedef struct window_s{
     sfEvent event;
     sfRenderWindow *window;
     sfVector2i m_p;
+    sfView *view;
 }window_t;
 // map structure
 typedef struct map_s{
@@ -67,7 +68,6 @@ typedef struct object_s {
     sfIntRect rect;
     sfVector2f pos;
     sfVector2f scale;
-    char status;
 } object_t;
 
 typedef struct anim_s {

@@ -23,19 +23,18 @@ void eventclose(global_t *all)
 
 void screenopen(global_t *all)
 {
-    sfView* view = sfView_create();
-    sfView_setCenter(view, sfSprite_getPosition(all->picture[0]->sprite));
-    sfView_setSize(view, (sfVector2f) {1920, 1080});
-    sfRenderWindow_setView(all->settings.window, view);
+    all->settings.view = sfView_create();
+    sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
+    sfRenderWindow_setView(all->settings.window, all->settings.view);
 
     while (sfRenderWindow_isOpen(all->settings.window)) {
+        sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
         &(all->settings.event)))
             eventclose(all);
         move_sprites(all);
         center_sprite_on_cam(all);
         map_borders_test(all);
-        sfRenderWindow_clear(all->settings.window, sfBlack);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,
