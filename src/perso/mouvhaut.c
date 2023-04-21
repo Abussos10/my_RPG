@@ -12,7 +12,7 @@
 void changeSprite2(sfClock* clock, sfSprite* sprite, TextureSprite *Textures)
 {
     sfTime elapsed_time = sfClock_getElapsedTime(clock);
-    if (sfTime_asSeconds(elapsed_time) > 0.5f) {
+    if (sfTime_asSeconds(elapsed_time) > 0.3f) {
         if (sfSprite_getTexture(sprite) == Textures->texture4)
             sfSprite_setTexture(sprite, Textures->texture5, sfTrue);
         if (sfSprite_getTexture(sprite) == Textures->texture5)
