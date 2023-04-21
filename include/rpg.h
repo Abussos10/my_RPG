@@ -129,32 +129,6 @@ int checkbutton_quit(global_t *data, button_t *button);
 void init_button(button_t *but);
 int checkbutton_settings(global_t *data, button_t *button);
 void init_sprite_menu(menu_t *menu);
-//haut
-    void checksprite2(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void destroySprites2(sfSprite* sprite, TextureSprite *Textures);
-    void loadSprites2(sfSprite** sprite, TextureSprite *Textures);
-    void changeSprite2(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//droite
-    void changeSprite3(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void loadSprites3(sfSprite** sprite, TextureSprite *Textures);
-    void destroySprites3(sfSprite* sprite, TextureSprite *Textures);
-    void checksprite3(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//gauche
-    void changeSprite4(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void loadSprites4(sfSprite** sprite, TextureSprite *Textures);
-    void destroySprites4(sfSprite* sprite, TextureSprite *Textures);
-    void checksprite4(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//mouvement
-    void deplacer_sprite(sfSprite* sprite, float vitesse);
-
-
-void run();
 
 #endif /* !MY_H_ */
 
