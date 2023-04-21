@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2023
+** oe
+** File description:
+** oe
+*/
+
 #include <SFML/Graphics.h>
 #include "../../include/rpg.h"
 
