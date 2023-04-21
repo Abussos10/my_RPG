@@ -17,7 +17,8 @@ SRC		=	./src/main.c				\
 			./src/menu/init_sprite.c		\
 			./src/menu/init_music.c			\
 			./src/menu/draw.c 				\
-			./src/menu/button.c
+			./src/menu/button.c				\
+			./src/map/map_borders.c			\
 
 OBJ		=	$(SRC:.c=.o)
 
