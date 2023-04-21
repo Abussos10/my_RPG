@@ -13,7 +13,7 @@ SRC		=	./src/main.c				\
 			./src/map/init_map.c			\
 			./src/init_sprites.c		\
 			./src/perso/players_movements.c	\
-     		./src/menu/menu.c 				\
+     	./src/menu/menu.c 				\
 			./src/menu/init_sprite.c		\
 			./src/menu/init_music.c			\
 			./src/menu/draw.c 				\
