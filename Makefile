@@ -9,10 +9,15 @@ NAME	=	my_rpg
 
 RM		=	rm -rf
 
-SRC		=	./src/main.c				\
-			./src/init_map.c			\
-			./src/init_sprites.c		\
-			./src/players_movements.c
+SRC		=	./src/main.c					\
+			./src/map/init_map.c			\
+			./src/init_sprites.c			\
+			./src/perso/players_movements.c	\
+			./src/menu/menu.c 				\
+			./src/menu/init_sprite.c		\
+			./src/menu/init_music.c			\
+			./src/menu/draw.c 				\
+			./src/menu/button.c 			\
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -20,9 +25,9 @@ GCC		=	gcc
 
 CFLAGS	= 	-I ./include
 
-CERROR	=	-W -Wextra -Werror
+CERROR	=	-W -Wextra
 
-CSFML	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
+CSFML	=	-lcsfml-graphics -lcsfml-system -lcsfml-window -lcsfml-audio -lm -g -Wall -Wextra
 
 all:	$(NAME)
 
