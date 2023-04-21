@@ -8,7 +8,7 @@
 #include "../../include/rpg.h"
 #include "../../include/menu.h"
 
-int collider(sfImage *collision, récupérer position joueur)
+int collider(sfImage *collision -> "c'est la map en noire et blanc", récupérer position joueur)
 {
     sfColor walk_character = sfImage_getPixel(collision,(unsigned int) positionx,(unsigned int)positiony);
     sfUint32 wh = sfColor_toInteger(sfwhite);
