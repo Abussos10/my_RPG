@@ -8,7 +8,8 @@
 #include <SFML/Graphics.h>
 #include "../../include/rpg.h"
 
-void deplacer_sprite(sfSprite* sprite, float vitesse) {
+void deplacer_sprite(sfSprite* sprite, float vitesse) 
+{
     float x = sfSprite_getPosition(sprite).x;
     float y = sfSprite_getPosition(sprite).y;
 

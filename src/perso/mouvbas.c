@@ -47,7 +47,7 @@ void checksprite(sfClock* clock, sfSprite* sprite, TextureSprite* Textures)
 }
 
 
-void run()
+void run(void)
 {
     TextureSprite Textures;
     sfVideoMode mode = { 640, 480, 32 };
@@ -63,14 +63,12 @@ void run()
     loadSprites2(&sprite, &Textures);
     loadSprites3(&sprite, &Textures);
     loadSprites4(&sprite, &Textures);
-    while (sfRenderWindow_isOpen(window))
-    {
-        while (sfRenderWindow_pollEvent(window, &event))
-        {
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
             if (event.type == sfEvtClosed)
                 sfRenderWindow_close(window);
         }
-        checksprite(clock, sprite, &Textures);
+        checksprite(clock, sprite, &Textures); 
         checksprite2(clock, sprite, &Textures);
         checksprite3(clock, sprite, &Textures);
         checksprite4(clock, sprite, &Textures);
@@ -86,4 +84,3 @@ void run()
     sfClock_destroy(clock);
     sfRenderWindow_destroy(window);
 }
-
