@@ -66,23 +66,13 @@ typedef struct global_s{
     map_t **picture;
 } global_t;
 
-
-typedef struct {
-    sfTexture* texture1;
-    sfTexture* texture2;
-    sfTexture* texture3;
-    sfTexture* texture4;
-    sfTexture *texture5;
-    sfTexture *texture6;
-    sfTexture *texture7;
-    sfTexture *texture8;
-    sfTexture *texture9;
-    sfTexture *texture10;
-    sfTexture *texture11;
-    sfTexture *texture12;
-    sfTexture *texture13;
-} TextureSprite;
-
+typedef struct object_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfIntRect rect;
+    sfVector2f pos;
+    char status;
+} object_t;
 
 // src/main.c :
 
