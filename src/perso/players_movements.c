@@ -7,14 +7,22 @@
 
 #include "../../include/rpg.h"
 
-int move_sprites(global_t *all)
+void move_sprites(global_t *all)
 {
-    if (KEYPRESSED(sfKeyRight))
+    if (KEYPRESSED(sfKeyRight)) {
+        right_animation(all);
         sfSprite_move(all->picture[0]->sprite, (sfVector2f) {-0.3, 0});
-    if (KEYPRESSED(sfKeyLeft))
+    }
+    if (KEYPRESSED(sfKeyLeft)) {
+        left_animation(all);
         sfSprite_move(all->picture[0]->sprite, (sfVector2f) {0.3, 0});
-    if (KEYPRESSED(sfKeyDown))
+    }
+    if (KEYPRESSED(sfKeyDown)) {
+        down_animation(all);
         sfSprite_move(all->picture[0]->sprite, (sfVector2f) {0, -0.3});
-    if (KEYPRESSED(sfKeyUp))
+    }
+    if (KEYPRESSED(sfKeyUp)) {
+        up_animation(all);
         sfSprite_move(all->picture[0]->sprite, (sfVector2f) {0, 0.3});
+    }
 }

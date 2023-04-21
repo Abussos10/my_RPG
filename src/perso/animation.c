@@ -1,53 +1,83 @@
 /*
 ** EPITECH PROJECT, 2023
-** my_rpg
+** my_glob
 ** File description:
 ** *
 */
 
-//#include "../../include/rpg.h"
-//
-//void unmoved_animation(object_t *player)
-//{
-//    int widthmax = 32 * 13;
-//
-//    player->rect.top = 0;
-//    player->anim_clock->time = sfClock_getElapsedTime   player->anim_clock->clk);
-//    if (sfTime_asMilliseconds   player->anim_clock->time) >= 100) {
-//        sfClock_restart player->anim_clock->clk);
-//        player->rect.left += 32;
-//        if (player->rect.left >= widthmax)
-//            player->rect.left = 0;
-//        sfSprite_setTextureRect (player->sprt, player->rect);
-//    }
-//}
-//
-//void right_animation(object_t *player)
-//{
-//    int widthmax = 32 * 8;
-//
-//    player->rect.top = 32;
-//    anim_clock->time = sfClock_getElapsedTime   player->anim_clock->clk);
-//    if (sfTime_asMilliseconds   player->anim_clock->time) >= 100) {
-//        sfClock_restart player->anim_clock->clk);
-//        player->player->rect.left += 32;
-//        if  player->player->rect.left >= widthmax)
-//            player->player->rect.left = 0;
-//        sfSprite_setTextureRect player->player->sprt,    player->player->rect);
-//    }
-//}
-//
-//void left_animation(object_t *player)
-//{
-//    int widthmax = 32 * 8;
-//
-//    player->player->rect.top = 288;
-//    player->anim_clock->time = sfClock_getElapsedTime   player->anim_clock->clk);
-//    if (sfTime_asMilliseconds   player->anim_clock->time) >= 100) {
-//        sfClock_restart player->anim_clock->clk);
-//        player->player->rect.left += 32;
-//        if  player->player->rect.left >= widthmax)
-//            player->player->rect.left = 0;
-//        sfSprite_setTextureRect player->player->sprt,    player->player->rect);
-//    }
-//}
+#include "../../include/rpg.h"
+
+void unmoved_animation(global_t *glob)
+{
+    int widthmax = 53 * 3;
+
+    glob->player->rect.top = 0;
+    glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
+    if (sfTime_asMilliseconds(glob->clock->time) >= 200) {
+        sfClock_restart(glob->clock->clk);
+        glob->player->rect.left += 53;
+        if (glob->player->rect.left >= widthmax)
+            glob->player->rect.left = 0;
+        sfSprite_setTextureRect(glob->player->sprt, glob->player->rect);
+    }
+}
+
+void up_animation(global_t *glob)
+{
+    int widthmax = 53 * 10;
+
+    glob->player->rect.top = 351;
+    glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
+    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+        sfClock_restart(glob->clock->clk);
+        glob->player->rect.left += 53;
+        if (glob->player->rect.left >= widthmax)
+            glob->player->rect.left = 0;
+        sfSprite_setTextureRect(glob->player->sprt, glob->player->rect);
+    }
+}
+
+void left_animation(global_t *glob)
+{
+    int widthmax = 54 * 10;
+
+    glob->player->rect.top = 297;
+    glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
+    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+        sfClock_restart(glob->clock->clk);
+        glob->player->rect.left += 54;
+        if (glob->player->rect.left >= widthmax)
+            glob->player->rect.left = 0;
+        sfSprite_setTextureRect(glob->player->sprt, glob->player->rect);
+    }
+}
+
+void down_animation(global_t *glob)
+{
+    int widthmax = 53 * 10;
+
+    glob->player->rect.top = 240;
+    glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
+    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+        sfClock_restart(glob->clock->clk);
+        glob->player->rect.left += 53;
+        if (glob->player->rect.left >= widthmax)
+            glob->player->rect.left = 0;
+        sfSprite_setTextureRect(glob->player->sprt, glob->player->rect);
+    }
+}
+
+void right_animation(global_t *glob)
+{
+    int widthmax = 54 * 10;
+
+    glob->player->rect.top = 410;
+    glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
+    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+        sfClock_restart(glob->clock->clk);
+        glob->player->rect.left += 54;
+        if (glob->player->rect.left >= widthmax)
+            glob->player->rect.left = 0;
+        sfSprite_setTextureRect(glob->player->sprt, glob->player->rect);
+    }
+}
