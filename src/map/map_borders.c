@@ -31,15 +31,7 @@ void map_borders_test(global_t *all)
 
 void center_sprite_on_cam(global_t *all)
 {
-    sfVector2u windowSize = sfRenderWindow_getSize(all->settings.window);
-    sfVector2f spritePos = sfSprite_getPosition(all->player->sprt);
-    if (spritePos.x < 0)
-        spritePos.x = 0;
-    if (spritePos.x + 791 > windowSize.x)
-        spritePos.x = windowSize.x - 791;
-    if (spritePos.y < 0)
-        spritePos.y = 0;
-    if (spritePos.y + 575 > windowSize.y)
-        spritePos.y = windowSize.y - 575;
-    sfSprite_setPosition(all->player->sprt, spritePos);
+    sfRenderWindow_setView(all->settings.window, all->settings.view);
+    sfView_setCenter(all->settings.view,
+    sfSprite_getPosition(all->player->sprt));
 }
