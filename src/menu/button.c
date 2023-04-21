@@ -8,7 +8,7 @@
 #include "../../include/rpg.h"
 #include "../../include/menu.h"
 
-int checkbutton_play(global_t *data, button_t *button)
+int checkbutton_play(global_t *data)
 {
     data->settings.m_p = sfMouse_getPositionRenderWindow(data->settings.window);
     if (data->settings.m_p.x >= 348 &&

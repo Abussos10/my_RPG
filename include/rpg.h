@@ -35,8 +35,9 @@
 #define SETSCALE sfSprite_setScale
 #define SETPOS sfSprite_setPosition
 #define KEYPRESSED sfKeyboard_isKeyPressed
+#define BOUNDS sfSprite_getGlobalBounds
 
-// 
+//
 #define BUTTON_START
 #define BUTTON_RESUME
 #define BUTTON_SETTINGS
@@ -60,28 +61,26 @@ typedef struct map_s{
     float speed;
 } map_t;
 
+typedef struct object_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+    char status;
+} object_t;
+
+typedef struct anim_s {
+    sfClock *clk;
+    sfTime time;
+} anim_t;
 // global structure
 typedef struct global_s{
     window_t settings;
     map_t **picture;
+    object_t *player;
+    anim_t *clock;
 } global_t;
-
-
-typedef struct {
-    sfTexture* texture1;
-    sfTexture* texture2;
-    sfTexture* texture3;
-    sfTexture* texture4;
-    sfTexture *texture5;
-    sfTexture *texture6;
-    sfTexture *texture7;
-    sfTexture *texture8;
-    sfTexture *texture9;
-    sfTexture *texture10;
-    sfTexture *texture11;
-    sfTexture *texture12;
-    sfTexture *texture13;
-} TextureSprite;
 
 
 // src/main.c :
@@ -108,17 +107,11 @@ typedef struct {
     // inventaire.c
 
 // src/menu/ :
-
     // menu.c
     void open_main_menu(global_t *all);
-
-
 // src/perso/ :
-
     // players_movements.c
-    int move_sprites(global_t *all);
-
-
+void move_sprites(global_t *all);
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
 void eventclose(global_t *ALL);
@@ -129,42 +122,22 @@ void init_scale(global_t *all);
 void init_pos(global_t *all);
 void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
-int move_sprites(global_t *all);
 int menu_loop(menu_t *menu, window_t *window, global_t *glob);
 void draw_all_menu(menu_t *menu, global_t *glob);
 void init_sprite_menu(menu_t *menu);
 void init_all_menu(menu_t *menu);
-int checkbutton_play(global_t *data, button_t *button);
+int checkbutton_play(global_t *data);
 int checkbutton_quit(global_t *data, button_t *button);
 void init_button(button_t *but);
 int checkbutton_settings(global_t *data, button_t *button);
 void init_sprite_menu(menu_t *menu);
-//haut
-    void checksprite2(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void destroySprites2(sfSprite* sprite, TextureSprite *Textures);
-    void loadSprites2(sfSprite** sprite, TextureSprite *Textures);
-    void changeSprite2(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//droite
-    void changeSprite3(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void loadSprites3(sfSprite** sprite, TextureSprite *Textures);
-    void destroySprites3(sfSprite* sprite, TextureSprite *Textures);
-    void checksprite3(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//gauche
-    void changeSprite4(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-    void loadSprites4(sfSprite** sprite, TextureSprite *Textures);
-    void destroySprites4(sfSprite* sprite, TextureSprite *Textures);
-    void checksprite4(sfClock* clock, sfSprite* sprite,
-    TextureSprite *Textures);
-//mouvement
-    void deplacer_sprite(sfSprite* sprite, float vitesse);
-
-
-void run();
+void init_player(global_t *glob);
+void left_animation(global_t *glob);
+void right_animation(global_t *glob);
+void unmoved_animation(global_t *glob);
+void up_animation(global_t *glob);
+void down_animation(global_t *glob);
+void center_sprite_on_cam(global_t *all);
+void map_borders_test(global_t *all);
 
 #endif /* !MY_H_ */
-

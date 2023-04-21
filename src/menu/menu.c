@@ -10,7 +10,7 @@
 
 int button_handling(menu_t *menu, global_t *glob)
 {
-    if (checkbutton_play(glob, menu->but) == 1) {
+    if (checkbutton_play(glob) == 1) {
             sfRenderWindow_drawSprite(glob->settings.window,
             menu->but->bplay_s, NULL);
         if (sfMouse_isButtonPressed(sfMouseLeft))
@@ -24,10 +24,8 @@ int button_handling(menu_t *menu, global_t *glob)
         }
     }
     if (checkbutton_quit(glob, menu->but) == 1) {
-        if (sfMouse_isButtonPressed(sfMouseLeft))
-            sfRenderWindow_drawSprite(glob->settings.window,
-            menu->but->bplay_s, NULL);
             if (sfMouse_isButtonPressed(sfMouseLeft)) {
+                sfMusic_stop(menu->menu_music);
                 sfRenderWindow_close(glob->settings.window);
         }
     }
@@ -48,8 +46,10 @@ int menu_loop(menu_t *menu, window_t *window, global_t *glob)
                 sfRenderWindow_close(glob->settings.window);
             }
         }
-        if (button_handling(menu, glob) == 2)
+        if (button_handling(menu, glob) == 2) {
+            sfMusic_stop(menu->menu_music);
             i++;
+        }
         draw_all_menu(menu, glob);
         sfRenderWindow_display(glob->settings.window);
     }

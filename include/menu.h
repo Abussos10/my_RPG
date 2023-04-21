@@ -38,6 +38,9 @@ typedef struct button_s {
     sfTexture *bplay_tx;
     sfSprite *bset_s;
     sfTexture *bset_tx;
+    sfTexture *map1bw_tx;
+    sfSprite *map1_s;
+    sfTexture *map1_tx;
 }button_t;
 
 typedef struct menu_s {
