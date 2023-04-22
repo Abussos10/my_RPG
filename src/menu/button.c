@@ -8,6 +8,7 @@
 #include "../../include/rpg.h"
 #include "../../include/menu.h"
 
+// function that check for click event on 'play' button
 int checkbutton_play(global_t *data)
 {
     data->settings.m_p = sfMouse_getPositionRenderWindow(data->settings.window);
@@ -20,6 +21,7 @@ int checkbutton_play(global_t *data)
     return (0);
 }
 
+// function that check for click event on 'settings' button
 int checkbutton_settings(global_t *data, button_t *button)
 {
     data->settings.m_p = sfMouse_getPositionRenderWindow(data->settings.window);
@@ -35,6 +37,7 @@ int checkbutton_settings(global_t *data, button_t *button)
     return (0);
 }
 
+// function that check for click event on 'quit' button
 int checkbutton_quit(global_t *data, button_t *button)
 {
     data->settings.m_p = sfMouse_getPositionRenderWindow(data->settings.window);
