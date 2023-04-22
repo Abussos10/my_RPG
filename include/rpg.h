@@ -283,6 +283,17 @@ typedef struct global_s{
 
 
 
+/**************************************[HEALTH PROTOTYPES]***************************************/
+
+// src/events/ :
+
+    // sword_handler.c
+    void sword_event_handler(global_t *all);
+    void pick_the_sword(global_t *all);
+
+/************************************************************************************************/
+
+
 /***************************************[MENU PROTOTYPES]****************************************/
 
 // src/menu/main_menu/

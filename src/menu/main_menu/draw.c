@@ -5,8 +5,8 @@
 ** draw
 */
 
-#include "../../include/menu.h"
-#include "../../include/rpg.h"
+#include "../../../include/rpg.h"
+#include "../../../include/menu.h"
 
 // function that draws the entire menu
 void draw_all_menu(menu_t *menu, global_t *glob)

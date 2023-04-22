@@ -33,9 +33,9 @@ void draw_npc(npc_t *npc, global_t *all)
 
 int init_meeting_zone(object_t *play, global_t *all)
 {
-    sfVector2f cacaprout = sfSprite_getPosition(play->sprt);
-    if (cacaprout.x <= 677 && cacaprout.y <= 478 &&
-        cacaprout.x >= 424 && cacaprout.y >= 388)
+    sfVector2f pos = sfSprite_getPosition(play->sprt);
+    if (pos.x <= 677 && pos.y <= 478 &&
+        pos.x >= 424 && pos.y >= 388)
         if (sfKeyboard_isKeyPressed(sfKeyE)) {
                 return (1);
         }

@@ -34,7 +34,6 @@ void screenopen(global_t *all)
     all->settings.view = sfView_create();
     sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(all->settings.window, all->settings.view);
-
     sfMusic_play(all->music->music);
     sfMusic_setLoop(all->music->music, sfTrue);
     while (sfRenderWindow_isOpen(all->settings.window)) {
@@ -50,6 +49,7 @@ void screenopen(global_t *all)
         sfRenderWindow_drawSprite(all->settings.window,
                         all->player->sprt, NULL);
         inventory_render(all); health_bar_render(all);
+        sword_event_handler(all);
         draw_npc(all->player->npc, all);
         if (init_meeting_zone(all->player, all) == 1) {
             sfRenderWindow_drawSprite(all->settings.window,

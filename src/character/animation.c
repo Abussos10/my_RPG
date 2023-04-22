@@ -7,6 +7,7 @@
 
 #include "../../include/rpg.h"
 
+// animation when the character is standing
 void unmoved_animation(global_t *glob)
 {
     int widthmax = 53 * 3;
@@ -22,6 +23,7 @@ void unmoved_animation(global_t *glob)
     }
 }
 
+// animation when the character is going up
 void up_animation(global_t *glob)
 {
     int widthmax = 53 * 10;
@@ -37,6 +39,7 @@ void up_animation(global_t *glob)
     }
 }
 
+// animation when the character is going left
 void left_animation(global_t *glob)
 {
     int widthmax = 54 * 10;
@@ -52,6 +55,7 @@ void left_animation(global_t *glob)
     }
 }
 
+// animation when the character is going down
 void down_animation(global_t *glob)
 {
     int widthmax = 53 * 10;
@@ -67,6 +71,7 @@ void down_animation(global_t *glob)
     }
 }
 
+// animation when the character is going right
 void right_animation(global_t *glob)
 {
     int widthmax = 54 * 10;

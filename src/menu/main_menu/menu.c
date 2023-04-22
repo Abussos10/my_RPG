@@ -5,8 +5,8 @@
 ** menu
 */
 
-#include "../../include/menu.h"
-#include "../../include/rpg.h"
+#include "../../../include/rpg.h"
+#include "../../../include/menu.h"
 
 // function that handle the buttons
 int button_handling(menu_t *menu, global_t *glob)
@@ -34,7 +34,7 @@ int button_handling(menu_t *menu, global_t *glob)
 }
 
 // function that handle the menu loop
-int menu_loop(menu_t *menu, window_t *window, global_t *glob)
+void menu_loop(menu_t *menu, window_t *window, global_t *glob)
 {
     int i = 0;
 
@@ -52,7 +52,6 @@ int menu_loop(menu_t *menu, window_t *window, global_t *glob)
         draw_all_menu(menu, glob);
         sfRenderWindow_display(glob->settings.window);
     }
-    return (0);
 }
 
 // function that handle the close event of the menu
