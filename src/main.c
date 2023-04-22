@@ -21,6 +21,7 @@ int usage(int ac, char **av, global_t *all)
         init_pos(all);
         init_setsprite(all);
         init_player(all);
+        init_npc(all->player->npc);
         init_music_game(all->music);
         all->clock->clk = sfClock_create();
     }
@@ -36,6 +37,7 @@ int main(int ac, char **av)
     all->player = malloc(sizeof(object_t));
     all->clock = malloc(sizeof(anim_t));
     all->music = malloc(sizeof(music_t));
+    all->player->npc = malloc(sizeof(npc_t));
     usage(ac, av, all);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);

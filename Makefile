@@ -24,7 +24,8 @@ SRC		=	./src/main.c								\
 			./src/perso/init_sprite_perso.c 			\
 			./src/perso/animation.c						\
 			./src/inventaire/inventaire.c				\
-			./src/init_music.c
+			./src/init_music.c							\
+			./src/npc/npc.c
 
 OBJ		=	$(SRC:.c=.o)
 
