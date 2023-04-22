@@ -8,6 +8,7 @@
 #include "../../include/menu.h"
 #include "../../include/rpg.h"
 
+// function that draws the entire menu
 void draw_all_menu(menu_t *menu, global_t *glob)
 {
     sfRenderWindow_drawSprite(glob->settings.window, menu->bg_s, NULL);
