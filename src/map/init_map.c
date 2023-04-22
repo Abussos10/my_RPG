@@ -22,6 +22,10 @@ void eventclose(global_t *all)
 {
     if (all->settings.event.type == sfEvtClosed)
         sfRenderWindow_close(all->settings.window);
+    if (all->settings.event.type == sfEvtKeyPressed && 
+    all->settings.event.key.code == sfKeyEscape) {
+        //open_game_menu(all);
+    }
 }
 
 // loop of the game
@@ -43,7 +47,7 @@ void screenopen(global_t *all)
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->player->sprt, NULL);
-        inventory_render(all);
+        inventory_render(all); health_bar_render(all);
         sfRenderWindow_display(all->settings.window);
     }
 }
@@ -51,6 +55,9 @@ void screenopen(global_t *all)
 // function to initialize some useful value in my struct
 void init_value(global_t *all)
 {
-    LU = malloc(sizeof(inv_t));
-    LU->focus_index = 0;
+    LUI = malloc(sizeof(inv_t));
+    LUH = malloc(sizeof(health_t));
+    LUH->heart = malloc(sizeof(l_spr) * 2);
+    LUI->focus_index = 0;
+    LUH->health_status = 3;
 }
