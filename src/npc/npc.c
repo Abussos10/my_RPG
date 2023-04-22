@@ -6,3 +6,5 @@
 */
 
 #include "../../include/rpg.h"
+
+void init_npc()
