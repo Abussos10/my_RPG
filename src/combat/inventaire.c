@@ -5,3 +5,4 @@
 ** inventaire
 */
 
+#include "../../include/rpg.h"

@@ -32,4 +32,9 @@ void init_sprite(global_t *all)
     all->picture[0] = malloc(sizeof(map_t));
     all->picture[0]->texture = sfCff("./sprites/pic/map.png", NULL);
     all->picture[0]->sprite = sfSprite_create();
+    all->mask = malloc(sizeof(l_spr));
+    all->mask->texture = sfTexture_createFromFile(MASK_SPR, NULL);
+    all->mask->sprite = sfSprite_create();
+    all->mask_image = sfImage_createFromFile(MASK_SPR);
+    all->mask_size = sfImage_getSize(all->mask_image);
 }
