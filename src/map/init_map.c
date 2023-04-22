@@ -45,6 +45,12 @@ void screenopen(global_t *all)
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->player->sprt, NULL);
+        draw_npc(all->player->npc, all);
+        if (init_meeting_zone(all->player, all) == 1) {
+            sfRenderWindow_drawSprite(all->settings.window,
+            all->player->npc->b_sp, NULL);
+            sfSound_play(all->music->sound);
+        }
         inventory_render(all);
         sfRenderWindow_display(all->settings.window);
     }
