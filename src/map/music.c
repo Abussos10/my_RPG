@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2023
-** my_rpg
+** B-MUL-200-NCY-2-1-myrpg-dorian.aubry
 ** File description:
-** inventaire
+** music
 */
 
 #include "../../include/rpg.h"

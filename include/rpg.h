@@ -1,13 +1,12 @@
 /*
-** EPITECH PROJECT, 2022
-** my_rpg
+** EPITECH PROJECT, 2023
+** RPG
 ** File description:
-** rpg.h
+** rpg
 */
 
-#ifndef MY_H_
-
-#pragma once
+#ifndef RPG_H_
+    #define RPG_H_
     #include <unistd.h>
     #include <stdio.h>
     #include <stdlib.h>
@@ -27,23 +26,38 @@
     #include <stdarg.h>
     #include "menu.h"
 
-#define sfCff sfTexture_createFromFile
-#define sfRWc sfRenderWindow_create
-#define WIN all->settings.window
-#define MODE all->settings.mode
-#define SETEXT sfSprite_setTexture
-#define SETSCALE sfSprite_setScale
-#define SETPOS sfSprite_setPosition
-#define KEYPRESSED sfKeyboard_isKeyPressed
-#define BOUNDS sfSprite_getGlobalBounds
+// some define to optimize calling CSFML functions
+    #define sfCff       sfTexture_createFromFile
+    #define sfRWc       sfRenderWindow_create
+    #define WIN         all->settings.window
+    #define MODE        all->settings.mode
+    #define SETEXT      sfSprite_setTexture
+    #define SETSCALE    sfSprite_setScale
+    #define SETPOS      sfSprite_setPosition
+    #define KEYPRESSED  sfKeyboard_isKeyPressed
+    #define BOUNDS      sfSprite_getGlobalBounds
+    #define GET_POS     sfSprite_getPosition
+    #define sInit       my_init_sprite
 
-//
-#define BUTTON_START
-#define BUTTON_RESUME
-#define BUTTON_SETTINGS
-#define BUTTON_QUIT
+// some define to handle player collisions correctly
+    #define LEFT    1
+    #define RIGHT   2
+    #define ABOVE   3
+    #define BELOW   4
 
-// #define BUTTON_SETTINGS
+// some define to access my sprites path
+    #define MASK_SPR "./sprites/pic/map_mask.png"
+    #define HOTBAR_SPR "./sprites/pic/hotbar.png"
+    #define FOCUS_SPR "./sprites/pic/green_focus.png"
+
+// Processing...
+    #define BUTTON_START
+    #define BUTTON_RESUME
+    #define BUTTON_SETTINGS
+    #define BUTTON_QUIT
+
+// some shortcuts
+    #define LU  all->inv
 
 // window structure
 typedef struct window_s{
@@ -52,7 +66,8 @@ typedef struct window_s{
     sfRenderWindow *window;
     sfVector2i m_p;
     sfView *view;
-}window_t;
+} window_t;
+
 // map structure
 typedef struct map_s{
     sfTexture *texture;
@@ -62,26 +77,74 @@ typedef struct map_s{
     float speed;
 } map_t;
 
+typedef struct npc_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfSprite *e_sp;
+    sfTexture *e_tx;
+    sfSprite *b_sp;
+    sfTexture *b_tx;
+    sfVector2f b_p;
+    sfVector2f b_sc;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfVector2f e_pos;
+    sfVector2f e_scale;
+}npc_t;
+
+typedef struct music_s {
+    sfMusic *music;
+    sfSound *sound;
+    sfSoundBuffer *buff;
+}music_t;
+
+// object structure
 typedef struct object_s {
     sfSprite *sprt;
     sfTexture *txt;
     sfIntRect rect;
     sfVector2f pos;
     sfVector2f scale;
+    sfVector2f p_pos;
+    npc_t *npc;
 } object_t;
 
+// animation structure
 typedef struct anim_s {
     sfClock *clk;
     sfTime time;
 } anim_t;
-// global structure
+
+// struct for sprites
+typedef struct l_sprites {
+    sfTexture *texture;
+    sfSprite *sprite;
+
+    sfVector2f scale;
+    sfVector2f pos;
+} l_spr;
+
+// struct for inventory
+typedef struct inventory_s {
+    l_spr *hotbar;
+    l_spr *inv_focus;
+
+    int focus_index;
+} inv_t;
+
+// main structure
 typedef struct global_s{
     window_t settings;
     map_t **picture;
     object_t *player;
     anim_t *clock;
-} global_t;
 
+    inv_t *inv;
+
+    sfImage *mask_image;
+    music_t *music;
+} global_t;
 
 // src/main.c :
 
@@ -101,43 +164,85 @@ typedef struct global_s{
     void init_window(global_t *all);
     void eventclose(global_t *all);
     void screenopen(global_t *all);
+    void init_value(global_t *all);
+
+    // init_tools.c
+    l_spr *my_init_sprite(char *sprite_path);
+    void mod_sprites(sfSprite *sprite, sfVector2f position, sfVector2f scale);
+    sfVector2f my_offset(sfVector2f pos, int offsetx, int offsety);
+    int render_several(sfRenderWindow *window, int count, ...);
+    int destroy_several(int count, ...);
 
 // src/inventaire/ :
 
     // inventaire.c
+    void inventory_render(global_t *all);
+    void move_focus(global_t *all);
+    void wait_for_release(int key);
 
 // src/menu/ :
     // menu.c
     void open_main_menu(global_t *all);
+
+
+
 // src/perso/ :
-    // players_movements.c
-void move_sprites(global_t *all);
+    // player_movements.c
+    void move_sprites(global_t *all);
+
+    // player_collisions.c
+    int check_collision(global_t *all, int direction, int offsetx, int offsety);
+
+    // init_sprite_perso.c
+    void init_player(global_t *glob);
+
+// src/map/ :
+    // map_borders.c
+    void map_borders_handler(global_t *all);
+    void map_borders_handler2(global_t *all, sfFloatRect chr, sfFloatRect bck);
+    void center_sprite_on_cam(global_t *all);
+
+
+
+// src/menu :
+
+    // button.c
+    int checkbutton_play(global_t *data);
+    int checkbutton_settings(global_t *data, button_t *button);
+    int checkbutton_quit(global_t *data, button_t *button);
+
+    // draw.c
+    void draw_all_menu(menu_t *menu, global_t *glob);
+
+    // init_music.c
+    void init_music(menu_t *menu);
+    void init_all_menu(menu_t *menu);
+
+    // menu.c
+    int button_handling(menu_t *menu, global_t *glob);
+    int menu_loop(menu_t *menu, window_t *window, global_t *glob);
+    void menu_event_closer(menu_t *menu, window_t *window, global_t *glob);
+
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
 void eventclose(global_t *ALL);
-void screenopen(global_t *ALL);
-void init_window(global_t *ALL);
-int usage(int ac, char **av, global_t *ALL);
 void init_scale(global_t *all);
 void init_pos(global_t *all);
 void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
 int menu_loop(menu_t *menu, window_t *window, global_t *glob);
-void draw_all_menu(menu_t *menu, global_t *glob);
 void init_sprite_menu(menu_t *menu);
-void init_all_menu(menu_t *menu);
-int checkbutton_play(global_t *data);
-int checkbutton_quit(global_t *data, button_t *button);
 void init_button(button_t *but);
-int checkbutton_settings(global_t *data, button_t *button);
 void init_sprite_menu(menu_t *menu);
-void init_player(global_t *glob);
 void left_animation(global_t *glob);
 void right_animation(global_t *glob);
 void unmoved_animation(global_t *glob);
 void up_animation(global_t *glob);
+void init_music_game(music_t *music);
+void draw_npc(npc_t *npc, global_t *all);
 void down_animation(global_t *glob);
-void center_sprite_on_cam(global_t *all);
-void map_borders_test(global_t *all);
+void init_npc(npc_t *npc);
+int init_meeting_zone(object_t *play, global_t *all);
+void init_npc_bulle(npc_t *npc);
 
-#endif /* !MY_H_ */
+#endif /* !RPG_H_ */

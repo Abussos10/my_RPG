@@ -25,6 +25,7 @@
 
 #pragma once
 
+// button structure
 typedef struct button_s {
     sfSprite *quit_s;
     sfTexture *quit_tx;
@@ -41,8 +42,9 @@ typedef struct button_s {
     sfTexture *map1bw_tx;
     sfSprite *map1_s;
     sfTexture *map1_tx;
-}button_t;
+} button_t;
 
+// menu structure
 typedef struct menu_s {
     sfSprite *bg_s;
     sfTexture *bg_tx;
@@ -50,4 +52,4 @@ typedef struct menu_s {
     sfSprite *tx_s;
     sfTexture *tx_tx;
     button_t *but;
-}menu_t;
+} menu_t;
