@@ -88,11 +88,12 @@
     #define MASTER_SWORD    "./sprites/inventory/items/broken_master_sword.png"
     #define ROCK_SWORD      "./sprites/background/big_sword_rock.png"
 
-    #define BUTTON_SCALE        {0.865, 0.7};
-    #define SOUND_BAR_SCALE     {3, 2.3};
-    #define SOUND_ICON_SCALE    {0.4, 0.4};
-    #define S_DEFAULT           {1, 1};
-
+    #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
+    #define BUTTON_SCALE        (sfVector2f){0.865, 0.7};
+    #define SOUND_BAR_SCALE     (sfVector2f){3, 2.3};
+    #define SOUND_ICON_SCALE    (sfVector2f){0.4, 0.4};
+    #define SWORD_SCALE         (sfVector2f){0.061, 0.061}
+    #define S_DEFAULT           (sfVector2f){1, 1}; 
 // some shortcuts
     #define LUI  all->inv
     #define LUH  all->hea
@@ -170,6 +171,10 @@ typedef struct inventory_s {
 
     l_spr *sword_rock;
     l_spr *master_sword;
+    l_spr *sword_slot;
+
+    sfVector2f hotbar_pos;
+    int sword_status;
     int focus_index;
 } inv_t;
 
@@ -263,7 +268,7 @@ typedef struct global_s{
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
     void wait_for_release(int key);
-
+    void draw_several_items(global_t *all);
 
 /************************************************************************************************/
 
@@ -418,8 +423,9 @@ void init_music_game(music_t *music);
 void draw_npc(npc_t *npc, global_t *all);
 void down_animation(global_t *glob);
 void init_npc(npc_t *npc);
-int init_meeting_zone(object_t *play, global_t *all);
+int init_meeting_zone(object_t *play);
 void init_npc_bulle(npc_t *npc);
 void init_sound(music_t *music);
+
 
 #endif /* !RPG_H_ */

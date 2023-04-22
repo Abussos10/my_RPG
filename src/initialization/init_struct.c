@@ -12,4 +12,5 @@ void initialize_all(global_t *all)
 {
     all->game_menu_state = 0;
     all->settings_menu_state = 0;
+    LUI->sword_status = 0;
 }

@@ -17,14 +17,12 @@ void sword_event_handler(global_t *all)
                 pick_the_sword(all); return;
             }
         }
-    //printf("pos (%2.f;%2.f)\n", player_pos.x, player_pos.y);
-    //pos (1472;323) pos (1633;550)
 }
 
 // function to pick the sword
 void pick_the_sword(global_t *all)
 {
-    sfVector2f sword_scale = sfSprite_getScale(LUI->master_sword->sprite);
-    //sfClock
-    //sfSprite_setScale(LUI->master_sword->sprite, sword_scale);
+    LUI->sword_status = 1;
+    LUI->master_sword->scale = (sfVector2f){0, 0};
+    mod_sprites(LUI->master_sword->sprite, LUI->master_sword->pos, LUI->master_sword->scale);
 }

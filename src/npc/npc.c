@@ -31,7 +31,7 @@ void draw_npc(npc_t *npc, global_t *all)
     sfRenderWindow_drawSprite(all->settings.window, npc->e_sp, NULL);
 }
 
-int init_meeting_zone(object_t *play, global_t *all)
+int init_meeting_zone(object_t *play)
 {
     sfVector2f pos = sfSprite_getPosition(play->sprt);
     if (pos.x <= 677 && pos.y <= 478 &&
@@ -39,6 +39,7 @@ int init_meeting_zone(object_t *play, global_t *all)
         if (sfKeyboard_isKeyPressed(sfKeyE)) {
                 return (1);
         }
+    return (0);
 }
 
 void init_npc_bulle(npc_t *npc)

@@ -48,7 +48,7 @@ void init_sprite(global_t *all)
     all->mask_image = sfImage_createFromFile(MASK_SPR);
     LUI->hotbar = sInit(HOTBAR_SPR); LUI->inv_focus = sInit(FOCUS_SPR);
     LUI->master_sword = sInit(MASTER_SWORD); LUI->sword_rock = sInit(ROCK_SWORD);
-    LUH->empty_bar = sInit(EMPTY_H);
+    LUI->sword_slot = sInit(SWORD_SLOT);
     LUH->heart[0] = sInit(HEART); LUH->heart[1] = sInit(HEART);
-    LUH->heart[2] = sInit(HEART);
+    LUH->heart[2] = sInit(HEART); LUH->empty_bar = sInit(EMPTY_H);
 }
