@@ -23,7 +23,6 @@ void init_npc(npc_t *npc)
     sfSprite_setPosition(npc->sprt, npc->pos);
     sfSprite_setPosition(npc->e_sp, npc->e_pos);
     init_npc_bulle(npc);
-
 }
 
 void draw_npc(npc_t *npc, global_t *all)
