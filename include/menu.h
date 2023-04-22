@@ -61,3 +61,5 @@ typedef struct menu_s {
     int checkbutton_settings(global_t *data, button_t *button);
     int checkbutton_quit(global_t *data, button_t *button);
 
+    //draw.c
+    void draw_all_menu(menu_t *menu, global_t *glob);
