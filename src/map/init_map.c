@@ -35,6 +35,8 @@ void screenopen(global_t *all)
     sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(all->settings.window, all->settings.view);
 
+    sfMusic_play(all->music->music);
+    sfMusic_setLoop(all->music->music, sfTrue);
     while (sfRenderWindow_isOpen(all->settings.window)) {
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
@@ -48,6 +50,13 @@ void screenopen(global_t *all)
         sfRenderWindow_drawSprite(all->settings.window,
                         all->player->sprt, NULL);
         inventory_render(all); health_bar_render(all);
+        draw_npc(all->player->npc, all);
+        if (init_meeting_zone(all->player, all) == 1) {
+            sfRenderWindow_drawSprite(all->settings.window,
+            all->player->npc->b_sp, NULL);
+            sfSound_play(all->music->sound);
+        }
+        inventory_render(all);
         sfRenderWindow_display(all->settings.window);
     }
 }

@@ -115,6 +115,28 @@ typedef struct map_s{
     float speed;
 } map_t;
 
+typedef struct npc_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfSprite *e_sp;
+    sfTexture *e_tx;
+    sfSprite *b_sp;
+    sfTexture *b_tx;
+    sfVector2f b_p;
+    sfVector2f b_sc;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfVector2f e_pos;
+    sfVector2f e_scale;
+}npc_t;
+
+typedef struct music_s {
+    sfMusic *music;
+    sfSound *sound;
+    sfSoundBuffer *buff;
+}music_t;
+
 // object structure
 typedef struct object_s {
     sfSprite *sprt;
@@ -122,6 +144,8 @@ typedef struct object_s {
     sfIntRect rect;
     sfVector2f pos;
     sfVector2f scale;
+    sfVector2f p_pos;
+    npc_t *npc;
 } object_t;
 
 // animation structure
@@ -196,6 +220,7 @@ typedef struct global_s{
     int game_menu_state;
     int settings_menu_state;
     sfImage *mask_image;
+    music_t *music;
 } global_t;
 
 // src/main.c :
@@ -366,5 +391,24 @@ int my_strcmp(char *base, char *acomp);
 
 //			./src/menu/settings_menu/settings_menu.c 			
 //			./src/menu/settings_menu/settings_menu_sprites.c	
+void eventclose(global_t *ALL);
+void init_scale(global_t *all);
+void init_pos(global_t *all);
+void init_setsprite(global_t *all);
+void init_sprite(global_t *all);
+void init_sprite_menu(menu_t *menu);
+void init_button(button_t *but);
+void init_sprite_menu(menu_t *menu);
+void left_animation(global_t *glob);
+void right_animation(global_t *glob);
+void unmoved_animation(global_t *glob);
+void up_animation(global_t *glob);
+void init_music_game(music_t *music);
+void draw_npc(npc_t *npc, global_t *all);
+void down_animation(global_t *glob);
+void init_npc(npc_t *npc);
+int init_meeting_zone(object_t *play, global_t *all);
+void init_npc_bulle(npc_t *npc);
+void init_sound(music_t *music);
 
 #endif /* !RPG_H_ */

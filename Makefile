@@ -24,12 +24,15 @@ SRC		=	./src/main.c										\
 			./src/menu/main_menu/init_music.c					\
 			./src/menu/main_menu/draw.c 						\
 			./src/menu/main_menu/button.c						\
+			./src/events/sword_handler.c						\
 			./src/inventaire/inventaire.c						\
-			./src/health_bar/health_bar.c
+			./src/health_bar/health_bar.c						\
+			./src/npc/npc.c										\
+			./src/init_music.c
 #			./src/menu/game_menu/game_menu.c					
 #			./src/menu/game_menu/game_menu_sprites.c    		
 #			./src/menu/game_menu/game_menu_window.c	    		
-#			./src/menu/game_menu/hitbox_tools.c					
+#			./src/menu/game_menu/hitbox_tools.c
 
 OBJ		=	$(SRC:.c=.o)
 
