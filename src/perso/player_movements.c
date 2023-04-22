@@ -10,6 +10,9 @@
 // function that moves the player sprite whenver a key is pressed
 void move_sprites(global_t *all)
 {
+    if (KEYPRESSED(sfKeyLShift) || KEYPRESSED(sfKeyRShift)) {
+        unmoved_animation(all); return;
+    }
     if (KEYPRESSED(sfKeyRight) && check_collision(all, RIGHT, 1, 0) == 0) {
         right_animation(all);
         sfSprite_move(all->player->sprt, (sfVector2f) {0.5, 0}); return;
@@ -25,6 +28,5 @@ void move_sprites(global_t *all)
     if (KEYPRESSED(sfKeyUp) && check_collision(all, ABOVE, 0, -1) == 0) {
         up_animation(all);
         sfSprite_move(all->player->sprt, (sfVector2f) {0, -0.5}); return;
-    }
-    unmoved_animation(all);
+    } unmoved_animation(all);
 }

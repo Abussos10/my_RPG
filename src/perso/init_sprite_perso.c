@@ -7,6 +7,7 @@
 
 #include "../../include/rpg.h"
 
+// function to initialize the player
 void init_player(global_t *glob)
 {
     glob->player->sprt = sfSprite_create();

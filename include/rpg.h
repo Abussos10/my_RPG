@@ -37,6 +37,7 @@
     #define KEYPRESSED  sfKeyboard_isKeyPressed
     #define BOUNDS      sfSprite_getGlobalBounds
     #define GET_POS     sfSprite_getPosition
+    #define sInit       my_init_sprite
 
 // some define to handle player collisions correctly
     #define LEFT    1
@@ -44,13 +45,19 @@
     #define ABOVE   3
     #define BELOW   4
 
+// some define to access my sprites path
     #define MASK_SPR "./sprites/pic/map_mask.png"
+    #define HOTBAR_SPR "./sprites/pic/hotbar.png"
+    #define FOCUS_SPR "./sprites/pic/green_focus.png"
 
 // Processing...
     #define BUTTON_START
     #define BUTTON_RESUME
     #define BUTTON_SETTINGS
     #define BUTTON_QUIT
+
+// some shortcuts
+    #define LU  all->inv
 
 // window structure
 typedef struct window_s{
@@ -89,7 +96,18 @@ typedef struct anim_s {
 typedef struct l_sprites {
     sfTexture *texture;
     sfSprite *sprite;
+
+    sfVector2f scale;
+    sfVector2f pos;
 } l_spr;
+
+// struct for inventory
+typedef struct inventory_s {
+    l_spr *hotbar;
+    l_spr *inv_focus;
+
+    int focus_index;
+} inv_t;
 
 // main structure
 typedef struct global_s{
@@ -98,9 +116,9 @@ typedef struct global_s{
     object_t *player;
     anim_t *clock;
 
+    inv_t *inv;
+
     sfImage *mask_image;
-    sfVector2u mask_size;
-    l_spr *mask;
 } global_t;
 
 // src/main.c :
@@ -121,11 +139,21 @@ typedef struct global_s{
     void init_window(global_t *all);
     void eventclose(global_t *all);
     void screenopen(global_t *all);
+    void init_value(global_t *all);
+
+    // init_tools.c
+    l_spr *my_init_sprite(char *sprite_path);
+    void mod_sprites(sfSprite *sprite, sfVector2f position, sfVector2f scale);
+    sfVector2f my_offset(sfVector2f pos, int offsetx, int offsety);
+    int render_several(sfRenderWindow *window, int count, ...);
+    int destroy_several(int count, ...);
 
 // src/inventaire/ :
 
     // inventaire.c
-
+    void inventory_render(global_t *all);
+    void move_focus(global_t *all);
+    void wait_for_release(int key);
 
 // src/menu/ :
     // menu.c
@@ -140,7 +168,8 @@ typedef struct global_s{
     // player_collisions.c
     int check_collision(global_t *all, int direction, int offsetx, int offsety);
 
-
+    // init_sprite_perso.c
+    void init_player(global_t *glob);
 
 // src/map/ :
     // map_borders.c
@@ -183,7 +212,6 @@ int menu_loop(menu_t *menu, window_t *window, global_t *glob);
 void init_sprite_menu(menu_t *menu);
 void init_button(button_t *but);
 void init_sprite_menu(menu_t *menu);
-void init_player(global_t *glob);
 void left_animation(global_t *glob);
 void right_animation(global_t *glob);
 void unmoved_animation(global_t *glob);

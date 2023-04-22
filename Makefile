@@ -9,19 +9,21 @@ NAME	=	my_rpg
 
 RM		=	rm -rf
 
-SRC		=	./src/main.c					\
-			./src/map/init_map.c			\
-			./src/init_sprites.c			\
-			./src/perso/player_movements.c	\
-			./src/perso/player_collisions.c \
-     		./src/menu/menu.c 				\
-			./src/menu/init_sprite.c		\
-			./src/menu/init_music.c			\
-			./src/menu/draw.c 				\
-			./src/menu/button.c				\
-			./src/map/map_borders.c			\
-			./src/perso/init_sprite_perso.c \
-			./src/perso/animation.c
+SRC		=	./src/main.c								\
+			./src/map/init_map.c						\
+			./src/initialization/init_sprites.c			\
+			./src/initialization/init_tools.c			\
+			./src/perso/player_movements.c				\
+			./src/perso/player_collisions.c 			\
+     		./src/menu/menu.c 							\
+			./src/menu/init_sprite.c					\
+			./src/menu/init_music.c						\
+			./src/menu/draw.c 							\
+			./src/menu/button.c							\
+			./src/map/map_borders.c						\
+			./src/perso/init_sprite_perso.c 			\
+			./src/perso/animation.c						\
+			./src/inventaire/inventaire.c
 
 OBJ		=	$(SRC:.c=.o)
 
