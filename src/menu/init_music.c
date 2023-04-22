@@ -8,11 +8,13 @@
 #include "../../include/menu.h"
 #include "../../include/rpg.h"
 
+// function that initialize the music effects
 void init_music(menu_t *menu)
 {
     menu->menu_music = sfMusic_createFromFile("assets/menu.ogg");
 }
 
+// function that initialize both music and sprite menu
 void init_all_menu(menu_t *menu)
 {
     init_music(menu);
