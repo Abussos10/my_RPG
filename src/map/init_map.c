@@ -31,6 +31,8 @@ void screenopen(global_t *all)
     sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(all->settings.window, all->settings.view);
 
+    sfMusic_play(all->music->music);
+    sfMusic_setLoop(all->music->music, sfTrue);
     while (sfRenderWindow_isOpen(all->settings.window)) {
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,

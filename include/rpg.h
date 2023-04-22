@@ -77,6 +77,20 @@ typedef struct map_s{
     float speed;
 } map_t;
 
+typedef struct npc_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfSprite *e_sp;
+    sfTexture *e_tx;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+}npc_t;
+
+typedef struct music_s {
+    sfMusic *music;
+}music_t;
+
 // object structure
 typedef struct object_s {
     sfSprite *sprt;
@@ -84,6 +98,7 @@ typedef struct object_s {
     sfIntRect rect;
     sfVector2f pos;
     sfVector2f scale;
+    npc_t *npc;
 } object_t;
 
 // animation structure
@@ -119,6 +134,7 @@ typedef struct global_s{
     inv_t *inv;
 
     sfImage *mask_image;
+    music_t *music;
 } global_t;
 
 // src/main.c :
@@ -216,6 +232,7 @@ void left_animation(global_t *glob);
 void right_animation(global_t *glob);
 void unmoved_animation(global_t *glob);
 void up_animation(global_t *glob);
+void init_music_game(music_t *music);
 void down_animation(global_t *glob);
 
 #endif /* !RPG_H_ */
