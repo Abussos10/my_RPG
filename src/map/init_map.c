@@ -34,7 +34,7 @@ void screenopen(global_t *all)
             eventclose(all);
         move_sprites(all);
         center_sprite_on_cam(all);
-        map_borders_test(all);
+        map_borders_handler(all);
         sfRenderWindow_drawSprite(all->settings.window,
                         all->picture[0]->sprite, NULL);
         sfRenderWindow_drawSprite(all->settings.window,
