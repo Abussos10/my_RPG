@@ -36,9 +36,8 @@ int init_meeting_zone(object_t *play)
     sfVector2f pos = sfSprite_getPosition(play->sprt);
     if (pos.x <= 677 && pos.y <= 478 &&
         pos.x >= 424 && pos.y >= 388) {
-        if (sfKeyboard_isKeyPressed(sfKeyE)) {
+        if (sfKeyboard_isKeyPressed(sfKeyE))
             return (1);
-        }
     }
     return (0);
 }

@@ -25,26 +25,18 @@ void eventclose(global_t *all)
         sfRenderWindow_close(all->settings.window);
     if (all->settings.event.type == sfEvtKeyPressed &&
     all->settings.event.key.code == sfKeyEscape) {
-        //open_game_menu(all);
     }
 }
 
 // loop of the game
 int screenopen(global_t *all)
 {
-    init_enemy(all->enemy);
-    all->enemy->life = 100;
-    all->settings.view = sfView_create();
-    sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
-    sfRenderWindow_setView(all->settings.window, all->settings.view);
-    sfMusic_play(all->music->music);
-    sfMusic_setLoop(all->music->music, sfTrue);
+    init_enemy(all->enemy); sound_handler(all);
     while (sfRenderWindow_isOpen(all->settings.window)) {
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
-        &(all->settings.event))) {
+        &(all->settings.event)))
             eventclose(all);
-        }
         game_events(all);
         if (LUH->health_status == 0) {
             sfMusic_stop(all->music->music);
@@ -68,7 +60,7 @@ void game_events(global_t *all)
     RENDER(all->settings.window, all->mask_border->sprite, NULL);
     RENDER(all->settings.window, all->picture[0]->sprite, NULL);
     RENDER(all->settings.window, all->player->sprt, NULL);
-    sword_event_handler(all);
+    events_handler(all);
     RENDER(all->settings.window, all->mask_iso->sprite, NULL);
     draw_npc(all->player->npc, all);
     if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
@@ -83,12 +75,16 @@ void game_events(global_t *all)
     inventory_render(all); health_bar_render(all);
 }
 
+// function to handle every events in the game loop
+void game_events(global_t *all)
+{
+
+}
+
 // function to initialize some useful value in my struct
 void init_value(global_t *all)
 {
     LUI = malloc(sizeof(inv_t));
     LUH = malloc(sizeof(health_t));
     LUH->heart = malloc(sizeof(l_spr) * 2);
-    LUI->focus_index = 0;
-    LUH->health_status = 3;
 }

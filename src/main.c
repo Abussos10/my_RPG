@@ -38,7 +38,7 @@ int usage(int ac, char **av, global_t *all, menu_t *menu)
     return (0);
 }
 
-int main(int ac, char **av)
+int main(void)
 {
     global_t *all = malloc(sizeof(global_t));
     menu_t *menu = malloc(sizeof(menu_t));

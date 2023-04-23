@@ -7,6 +7,7 @@
 
 #include "../include/rpg.h"
 
+// init the music game
 void init_music_game(music_t *music, global_t *glob)
 {
     music->music = sfMusic_createFromFile("assets/main.ogg");
@@ -15,6 +16,7 @@ void init_music_game(music_t *music, global_t *glob)
     init_sound(music, glob->player);
 }
 
+// init the sounds
 void init_sound(music_t *music, object_t *player)
 {
     music->buff =
