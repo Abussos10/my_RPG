@@ -33,6 +33,7 @@ int screenopen(global_t *all)
 {
     init_enemy(all->enemy); sound_handler(all);
     while (sfRenderWindow_isOpen(all->settings.window)) {
+        LUH->health_status = 0;
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
         &(all->settings.event)))
@@ -48,10 +49,6 @@ int screenopen(global_t *all)
         }
         sfRenderWindow_display(all->settings.window);
     }
-<<<<<<< HEAD
-    //update_enemy(all);
-=======
->>>>>>> 4148cd7a3fa69952abf8e15acf526995ff9c2c22
     return (0);
 }
 

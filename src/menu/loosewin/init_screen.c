@@ -5,12 +5,11 @@
 ** init_screen
     */
 
-    #include "../../../include/rpg.h"
+#include "../../../include/rpg.h"
 
-    void init_screen(global_t *glob)
+void init_screen(global_t *glob)
     {
-        printf("CACA\n");
-        glob->end->l_sp = sfSprite_create();
+    glob->end->l_sp = sfSprite_create();
     glob->end->l_tx = sfTexture_createFromFile("assets/lose.png", NULL);
     glob->end->w_sp = sfSprite_create();
     glob->end->w_tx = sfTexture_createFromFile("assets/win.png", NULL);
