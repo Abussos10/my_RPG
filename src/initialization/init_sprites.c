@@ -13,6 +13,8 @@ void init_scale(global_t *all)
     all->picture[0]->scale = (sfVector2f){5, 5};
     all->mask_iso->scale = (sfVector2f){5, 5};
     all->mask_border->scale = (sfVector2f){5, 5};
+    all->mask_iso->scale = (sfVector2f){5, 5};
+    all->mask_border->scale = (sfVector2f){5, 5};
     all->player->scale = (sfVector2f){0.2, 0.2};
     LUI->hotbar->scale = (sfVector2f){1.3, 1.3};
     LUI->inv_focus->scale = (sfVector2f){0.25, 0.25};

@@ -70,6 +70,12 @@ void game_events(global_t *all)
     inventory_render(all); health_bar_render(all);
 }
 
+// function to handle every events in the game loop
+void game_events(global_t *all)
+{
+
+}
+
 // function to initialize some useful value in my struct
 void init_value(global_t *all)
 {
