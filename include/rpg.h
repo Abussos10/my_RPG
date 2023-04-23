@@ -227,6 +227,15 @@ typedef struct game_menu {
     l_spr *blink;
 } g_menu;
 
+typedef struct loose_win_s {
+    sfSprite *w_sp;
+    sfSprite *l_sp;
+    sfTexture *l_tx;
+    sfTexture *w_tx;
+    sfMusic *m_w;
+    sfMusic *m_l;
+}loose_win_t;
+
 // structure for my settings menu
 typedef struct settings_menu {
     sfRenderWindow *window;
@@ -462,7 +471,7 @@ typedef struct global_s{
     // init_map.c
     void init_window(global_t *all);
     void eventclose(global_t *all);
-    void screenopen(global_t *all);
+    int screenopen(global_t *all);
     void init_value(global_t *all);
     void game_events(global_t *all);
 
