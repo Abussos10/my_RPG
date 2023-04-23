@@ -247,6 +247,8 @@ typedef struct loose_win_s {
     sfTexture *w_tx;
     sfMusic *m_w;
     sfMusic *m_l;
+    sfSprite *b_s;
+    sfTexture *b_tx;
 }loose_win_t;
 
 // structure for my settings menu
@@ -308,6 +310,7 @@ typedef struct global_s{
     sfImage *mask_image;
     music_t *music;
     enemy_t *enemy;
+    loose_win_t *end;
 } global_t;
 
 // src/main.c :
@@ -530,6 +533,14 @@ void init_npc(npc_t *npc);
 int init_meeting_zone(object_t *play);
 void init_npc_bulle(npc_t *npc);
 void init_sound(music_t *music, object_t *player);
+void lose(global_t *glob, window_t *window);
+void win(global_t *glob, window_t *window);
+void init_screen(global_t *glob);
+void menu_eventlose(global_t *glob, window_t *window);
+void menu_eventwin(global_t *glob, window_t *window);
+int button_handl(global_t *glob);
+void draw_win(global_t *glob);
+void draw_lose(global_t *glob);
 
 
 #endif /* !RPG_H_ */
