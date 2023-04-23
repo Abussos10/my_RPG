@@ -49,7 +49,7 @@ void draw_several_items(global_t *all)
     if (LUI->sword_status == 1) {
         RENDER(all->settings.window, LUI->sword_slot->sprite, NULL);
         LUI->sword_slot->pos = my_offset\
-        (LUI->hotbar_pos, 230 + (93.8 * LUI->index_hpot), 412);
+        (LUI->hotbar_pos, 230 + (93.8 * LUI->index_sword), 412);
         mod_sprites(LUI->sword_slot->sprite, LUI->sword_slot->pos,\
         (sfVector2f){ 0.061, 0.061 });
     }

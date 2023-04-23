@@ -215,6 +215,7 @@ typedef struct inventory_s {
 
     int sword_status;
     int hpot_status;
+    int hpot_picked;
     int focus_index;
 } inv_t;
 
