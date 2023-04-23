@@ -41,33 +41,40 @@ void screenopen(global_t *all)
     while (sfRenderWindow_isOpen(all->settings.window)) {
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
-        &(all->settings.event)))
+        &(all->settings.event))) {
             eventclose(all);
-        move_sprites(all);
-        center_sprite_on_cam(all);
-        map_borders_handler(all);
-        sfRenderWindow_drawSprite(all->settings.window,
-                        all->picture[0]->sprite, NULL);
-        sfRenderWindow_drawSprite(all->settings.window,
-                        all->player->sprt, NULL);
-        sword_event_handler(all);
-        draw_npc(all->player->npc, all);
-        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
-            sfRenderWindow_drawSprite(all->settings.window,
-            all->player->npc->b_sp, NULL);
-            sfSound_play(all->music->sound);
         }
-        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
+        game_events(all);
+        if (LUH->health_status == 0)
             break;
-        inventory_render(all); health_bar_render(all);
         if (all->enemy->life > 0) {
             fight(all);
             sfRenderWindow_drawSprite(all->settings.window, all->enemy->sprt, NULL);
         }
-        if (LUH->health_status == 0)
+        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
             break;
         sfRenderWindow_display(all->settings.window);
     }
+}
+
+// function to handle every events in the game loop
+void game_events(global_t *all)
+{
+    move_sprites(all);
+    center_sprite_on_cam(all);
+    map_borders_handler(all);
+    sfRenderWindow_drawSprite(all->settings.window, all->mask_border->sprite, NULL);
+    sfRenderWindow_drawSprite(all->settings.window, all->picture[0]->sprite, NULL);
+    sfRenderWindow_drawSprite(all->settings.window, all->player->sprt, NULL);
+    sword_event_handler(all);
+    sfRenderWindow_drawSprite(all->settings.window, all->mask_iso->sprite, NULL);
+    draw_npc(all->player->npc, all);
+    if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
+        sfRenderWindow_drawSprite(all->settings.window,
+        all->player->npc->b_sp, NULL);
+        sfSound_play(all->music->sound);
+    }
+    inventory_render(all); health_bar_render(all);
 }
 
 // function to initialize some useful value in my struct

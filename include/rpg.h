@@ -76,7 +76,7 @@
     #define SOUND_ICON      "./sprites/buttons/settings_menu/sound_bar/soundicon.png"
 
 // [INVENTORY SPRITES]
-    #define MASK_SPR        "./sprites/pic/map_mask.png"
+    #define MASK_SPR        "./sprites/pic/test/map_mask.png"
     #define HOTBAR_SPR      "./sprites/inventory/hotbar.png"
     #define FOCUS_SPR       "./sprites/inventory/green_focus.png"
 
@@ -89,6 +89,9 @@
     #define ROCK_SWORD      "./sprites/background/big_sword_rock.png"
 
     #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
+    #define MASK_ISO        "./sprites/background/mask_iso.png"
+    #define MASK_BORDER     "./sprites/background/mask_borders.png"
+
     #define BUTTON_SCALE        (sfVector2f){0.865, 0.7};
     #define SOUND_BAR_SCALE     (sfVector2f){3, 2.3};
     #define SOUND_ICON_SCALE    (sfVector2f){0.4, 0.4};
@@ -242,6 +245,9 @@ typedef struct global_s{
 
     inv_t *inv;
     health_t *hea;
+
+    l_spr *mask_iso;
+    l_spr *mask_border;
 
     int game_menu_state;
     int settings_menu_state;
@@ -423,6 +429,7 @@ typedef struct global_s{
     void eventclose(global_t *all);
     void screenopen(global_t *all);
     void init_value(global_t *all);
+    void game_events(global_t *all);
 
 /************************************************************************************************/
 
@@ -437,7 +444,6 @@ void init_scale(global_t *all);
 void init_pos(global_t *all);
 void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
-void init_sprite_menu(menu_t *menu);
 void init_button(button_t *but);
 void init_sprite_menu(menu_t *menu);
 void left_animation(global_t *glob);

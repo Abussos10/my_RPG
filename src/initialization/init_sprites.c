@@ -11,6 +11,8 @@
 void init_scale(global_t *all)
 {
     all->picture[0]->scale = (sfVector2f){5, 5};
+    all->mask_iso->scale = (sfVector2f){5, 5};
+    all->mask_border->scale = (sfVector2f){5, 5};
     all->player->scale = (sfVector2f){0.2, 0.2};
     LUI->hotbar->scale = (sfVector2f){1.3, 1.3};
     LUI->inv_focus->scale = (sfVector2f){0.25, 0.25};
@@ -23,6 +25,7 @@ void init_scale(global_t *all)
 void init_pos(global_t *all)
 {
     all->picture[0]->pos = (sfVector2f){0, 0};
+    all->mask_border->pos = (sfVector2f){-2246, -1045};
     all->player->pos = (sfVector2f){600, 300};
     LUI->sword_rock->pos = (sfVector2f){1500, 460};
     LUI->master_sword->pos = (sfVector2f){1500, 350};
@@ -34,8 +37,12 @@ void init_pos(global_t *all)
 void init_setsprite(global_t *all)
 {
     SETEXT(all->picture[0]->sprite, all->picture[0]->texture, sfTrue);
-    SETSCALE(all->picture[0]->sprite, all->picture[0]->scale);
     SETPOS(all->picture[0]->sprite, all->picture[0]->pos);
+    SETPOS(all->mask_border->sprite, all->mask_border->pos);
+    SETSCALE(all->picture[0]->sprite, all->picture[0]->scale);
+    SETSCALE(all->mask_iso->sprite, all->mask_iso->scale);
+    SETSCALE(all->mask_border->sprite, all->mask_border->scale);
+
 }
 
 // function that initialize a sprite
@@ -51,4 +58,5 @@ void init_sprite(global_t *all)
     LUI->sword_slot = sInit(SWORD_SLOT);
     LUH->heart[0] = sInit(HEART); LUH->heart[1] = sInit(HEART);
     LUH->heart[2] = sInit(HEART); LUH->empty_bar = sInit(EMPTY_H);
+    all->mask_iso = sInit(MASK_ISO); all->mask_border = sInit(MASK_BORDER);
 }
