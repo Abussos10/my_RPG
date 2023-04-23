@@ -32,6 +32,7 @@ void eventclose(global_t *all)
 int screenopen(global_t *all)
 {
     init_enemy(all->enemy); sound_handler(all);
+    end_menu_handler(all);
     while (sfRenderWindow_isOpen(all->settings.window)) {
         sfRenderWindow_clear(all->settings.window, sfBlack);
         while (sfRenderWindow_pollEvent(all->settings.window,
