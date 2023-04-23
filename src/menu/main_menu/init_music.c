@@ -5,8 +5,8 @@
 ** init_music
 */
 
-#include "../../include/menu.h"
-#include "../../include/rpg.h"
+#include "../../../include/rpg.h"
+#include "../../../include/menu.h"
 
 // function that initialize the music effects
 void init_music(menu_t *menu)

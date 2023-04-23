@@ -5,9 +5,10 @@
 ** init_sprite
 */
 
-#include "../../include/menu.h"
-#include "../../include/rpg.h"
+#include "../../../include/rpg.h"
+#include "../../../include/menu.h"
 
+// function that initialize the menu buttons
 void init_button(button_t *but)
 {
     but->play_tx = sfTexture_createFromFile("assets/play.png", NULL);
@@ -24,6 +25,7 @@ void init_button(button_t *but)
     sfSprite_setPosition(but->quit_s, (sfVector2f){750, 750});
 }
 
+// function that make the buttons blurry when mouse on it
 void init_button_blur(button_t *but)
 {
     but->bplay_tx = sfTexture_createFromFile("assets/play_d.png", NULL);
@@ -40,6 +42,7 @@ void init_button_blur(button_t *but)
     sfSprite_setPosition(but->bquit_s, (sfVector2f){750, 750});
 }
 
+// function that init the menu sprites
 void init_sprite_menu(menu_t *menu)
 {
     menu->bg_tx = sfTexture_createFromFile("assets/menu.jpg", NULL);

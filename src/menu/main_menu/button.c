@@ -5,8 +5,8 @@
 ** button
 */
 
-#include "../../include/rpg.h"
-#include "../../include/menu.h"
+#include "../../../include/rpg.h"
+#include "../../../include/menu.h"
 
 // function that check for click event on 'play' button
 int checkbutton_play(global_t *data)

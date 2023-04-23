@@ -46,9 +46,6 @@
     #define BELOW   4
 
 // some define to access my sprites path
-    #define MASK_SPR "./sprites/pic/map_mask.png"
-    #define HOTBAR_SPR "./sprites/pic/hotbar.png"
-    #define FOCUS_SPR "./sprites/pic/green_focus.png"
 
 // Processing...
     #define BUTTON_START
@@ -56,8 +53,50 @@
     #define BUTTON_SETTINGS
     #define BUTTON_QUIT
 
+// different path for sprites so it's easily modifiable
+// [GAME MENU SPRITES]
+    #define G_MENU_BGD      "./sprites/background/grey_background.png"
+
+    #define B_RESUME        "./sprites/buttons/game_menu/default/continue_button.png"
+    #define BF_RESUME       "./sprites/buttons/game_menu/blinking/blinking_continue_button.png"
+
+    #define B_LOAD          "./sprites/buttons/game_menu/default/load_button.png"
+    #define BF_LOAD         "./sprites/buttons/game_menu/blinking/blinking_load_button.png"
+
+    #define B_SETTINGS      "./sprites/buttons/game_menu/default/settings_button.png"
+    #define BF_SETTINGS     "./sprites/buttons/game_menu/blinking/blinking_settings_button.png"
+
+    #define B_QUIT          "./sprites/buttons/game_menu/default/exit_button.png"
+    #define BF_QUIT         "./sprites/buttons/game_menu/blinking/blinking_exit_button.png"
+
+// [SETTINGS MENU SPRITES]
+    #define S_MENU_BGD      "./sprites/background/grey_background.png"
+
+    #define SOUND_BAR       "./sprites/buttons/settings_menu/sound_bar/soundbar.png"
+    #define SOUND_ICON      "./sprites/buttons/settings_menu/sound_bar/soundicon.png"
+
+// [INVENTORY SPRITES]
+    #define MASK_SPR        "./sprites/pic/map_mask.png"
+    #define HOTBAR_SPR      "./sprites/inventory/hotbar.png"
+    #define FOCUS_SPR       "./sprites/inventory/green_focus.png"
+
+// [HEART_BAR SPRITES]
+    #define EMPTY_H         "./sprites/heart_bar/empty_bar.png"
+    #define HEART           "./sprites/heart_bar/heart.png"
+
+// [SWORD SPRITES]
+    #define MASTER_SWORD    "./sprites/inventory/items/broken_master_sword.png"
+    #define ROCK_SWORD      "./sprites/background/big_sword_rock.png"
+
+    #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
+    #define BUTTON_SCALE        (sfVector2f){0.865, 0.7};
+    #define SOUND_BAR_SCALE     (sfVector2f){3, 2.3};
+    #define SOUND_ICON_SCALE    (sfVector2f){0.4, 0.4};
+    #define SWORD_SCALE         (sfVector2f){0.061, 0.061}
+    #define S_DEFAULT           (sfVector2f){1, 1}; 
 // some shortcuts
-    #define LU  all->inv
+    #define LUI  all->inv
+    #define LUH  all->hea
 
 // window structure
 typedef struct window_s{
@@ -107,6 +146,11 @@ typedef struct object_s {
     sfVector2f pos;
     sfVector2f scale;
     sfVector2f p_pos;
+    int life;
+    sfSound *sound;
+    sfSoundBuffer *buff;
+    sfSound *scr;
+    sfSoundBuffer *scr_b;
     npc_t *npc;
 } object_t;
 
@@ -130,8 +174,64 @@ typedef struct inventory_s {
     l_spr *hotbar;
     l_spr *inv_focus;
 
+    l_spr *sword_rock;
+    l_spr *master_sword;
+    l_spr *sword_slot;
+
+    sfVector2f hotbar_pos;
+    int sword_status;
     int focus_index;
 } inv_t;
+
+// struct for health bar
+typedef struct health_bar_s {
+    l_spr **heart;
+    l_spr *empty_bar;
+
+    int health_status;
+} health_t;
+
+// structure for my in-game menu
+typedef struct game_menu {
+    sfRenderWindow *window;
+    sfVideoMode mode;
+    sfEvent event;
+    sfVector2f pos_player;
+    l_spr *g_menu_background;
+    l_spr *resume;
+    l_spr *load;
+    l_spr *settings;
+    l_spr *quit;
+    l_spr *blink;
+} g_menu;
+
+// structure for my settings menu
+typedef struct settings_menu {
+    sfRenderWindow *window;
+    sfVideoMode mode;
+    sfEvent event;
+
+    l_spr *s_menu_background;
+    l_spr *sound_bar;
+    l_spr *sound_icon;
+} s_menu;
+
+typedef struct enemy_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfVector2f p_pos;
+    sfClock *clo;
+    sfTime time;
+    sfClock *clo_hit;
+    sfTime time_hit;
+    sfClock *clo_d;
+    sfTime time_d;
+    int life;
+
+}enemy_t;
 
 // main structure
 typedef struct global_s{
@@ -141,9 +241,13 @@ typedef struct global_s{
     anim_t *clock;
 
     inv_t *inv;
+    health_t *hea;
 
+    int game_menu_state;
+    int settings_menu_state;
     sfImage *mask_image;
     music_t *music;
+    enemy_t *enemy;
 } global_t;
 
 // src/main.c :
@@ -152,19 +256,19 @@ typedef struct global_s{
     int usage(int ac, char **av, global_t *all);
     void game_process(global_t *all);
 
+
+/**********************************[INITIALIZATION PROTOTYPES]***********************************/
+
 // src/initialization/ :
+
+    // init_struct.c
+    void initialize_all(global_t *all);
 
     // init_sprites.c
     void init_scale(global_t *all);
     void init_pos(global_t *all);
     void init_setsprite(global_t *all);
     void init_sprite(global_t *all);
-
-    // init_map.c
-    void init_window(global_t *all);
-    void eventclose(global_t *all);
-    void screenopen(global_t *all);
-    void init_value(global_t *all);
 
     // init_tools.c
     l_spr *my_init_sprite(char *sprite_path);
@@ -173,38 +277,60 @@ typedef struct global_s{
     int render_several(sfRenderWindow *window, int count, ...);
     int destroy_several(int count, ...);
 
+/************************************************************************************************/
+
+
+
+
+/************************************[INVENTORY PROTOTYPES]**************************************/
+
 // src/inventaire/ :
 
     // inventaire.c
+    void init_enemy(enemy_t *data);
+    void fight(global_t *glob);
+    void enemy_animation(enemy_t *enemy, global_t *glob);
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
     void wait_for_release(int key);
+    void draw_several_items(global_t *all);
 
-// src/menu/ :
+/************************************************************************************************/
+
+
+
+
+/**************************************[HEALTH PROTOTYPES]***************************************/
+
+// src/health_bar/ :
+
+    // health_bar.c
+    void health_bar_render(global_t *all);
+    void health_handler(global_t *all, sfVector2f player_pos);
+
+/************************************************************************************************/
+
+
+
+
+/**************************************[HEALTH PROTOTYPES]***************************************/
+
+// src/events/ :
+
+    // sword_handler.c
+    void sword_event_handler(global_t *all);
+    void pick_the_sword(global_t *all);
+
+/************************************************************************************************/
+
+
+/***************************************[MENU PROTOTYPES]****************************************/
+
+// src/menu/main_menu/
     // menu.c
-    void open_main_menu(global_t *all);
-
-
-
-// src/perso/ :
-    // player_movements.c
-    void move_sprites(global_t *all);
-
-    // player_collisions.c
-    int check_collision(global_t *all, int direction, int offsetx, int offsety);
-
-    // init_sprite_perso.c
-    void init_player(global_t *glob);
-
-// src/map/ :
-    // map_borders.c
-    void map_borders_handler(global_t *all);
-    void map_borders_handler2(global_t *all, sfFloatRect chr, sfFloatRect bck);
-    void center_sprite_on_cam(global_t *all);
-
-
-
-// src/menu :
+    int button_handling(menu_t *menu, global_t *glob);
+    void menu_loop(menu_t *menu, window_t *window, global_t *glob);
+    void menu_event_closer(menu_t *menu, window_t *window, global_t *glob);
 
     // button.c
     int checkbutton_play(global_t *data);
@@ -218,19 +344,99 @@ typedef struct global_s{
     void init_music(menu_t *menu);
     void init_all_menu(menu_t *menu);
 
-    // menu.c
-    int button_handling(menu_t *menu, global_t *glob);
-    int menu_loop(menu_t *menu, window_t *window, global_t *glob);
-    void menu_event_closer(menu_t *menu, window_t *window, global_t *glob);
+    // init_sprite.c
+    void init_button(button_t *but);
+    void init_button_blur(button_t *but);
+    void init_sprite_menu(menu_t *menu);
 
+
+// src/menu/game_menu :
+
+    // game_menu.c
+    void open_game_menu(global_t *all);
+    void g_buttons_actions(global_t *all, g_menu *menu, sfRenderWindow *window, sfEvent event);
+    void game_menu_event(global_t *all, g_menu *menu);
+
+    // game_menu_sprites.c
+    void init_game_menu_sprites(g_menu *menu);
+    void mod_all_m_sprites(g_menu *menu);
+
+    // game_menu_window.c
+    void mod_window(global_t *all, g_menu *menu);
+
+    // hitbox_tools.c
+    int check_hit(sfVector2i mouse, int corn1[], int corn2[]);
+    void blink_button(g_menu *m, l_spr *sprite, char *pth);
+    void blink_remove(g_menu *m);
+
+// src/menu/settings_menu :
+    // settings_menu.c
+    void open_settings_menu(global_t *all, g_menu *gmenu);
+    void s_buttons_actions(s_menu *menu, sfRenderWindow *window, sfEvent event);
+    void settings_menu_event(global_t *all, s_menu *menu);
+
+    // settings_menu_sprites.c 
+    void init_settings_menu_sprites(global_t *all, s_menu *menu);
+
+
+
+/************************************************************************************************/
+
+
+
+
+/*************************************[CHARACTER PROTOTYPES]*************************************/
+
+// src/character/ :
+    // player_movements.c
+    void move_sprites(global_t *all);
+
+    // player_collisions.c
+    int check_collision(global_t *all, int direction, int offsetx, int offsety);
+
+    // init_sprite_perso.c
+    void init_player(global_t *glob);
+
+    // animation.c
+    void unmoved_animation(global_t *glob);
+    void up_animation(global_t *glob);
+    void left_animation(global_t *glob);
+    void down_animation(global_t *glob);
+    void right_animation(global_t *glob);
+
+
+/************************************************************************************************/
+
+
+
+
+/****************************************[MAP PROTOTYPES]*********************/
+
+// src/map/ :
+    // map_borders.c
+    void map_borders_handler(global_t *all);
+    void map_borders_handler2(global_t *all, sfFloatRect chr, sfFloatRect bck);
+    void center_sprite_on_cam(global_t *all);
+
+    // init_map.c
+    void init_window(global_t *all);
+    void eventclose(global_t *all);
+    void screenopen(global_t *all);
+    void init_value(global_t *all);
+
+/************************************************************************************************/
+
+// some useful functions :
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
+
+//			./src/menu/settings_menu/settings_menu.c 			
+//			./src/menu/settings_menu/settings_menu_sprites.c	
 void eventclose(global_t *ALL);
 void init_scale(global_t *all);
 void init_pos(global_t *all);
 void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
-int menu_loop(menu_t *menu, window_t *window, global_t *glob);
 void init_sprite_menu(menu_t *menu);
 void init_button(button_t *but);
 void init_sprite_menu(menu_t *menu);
@@ -238,11 +444,13 @@ void left_animation(global_t *glob);
 void right_animation(global_t *glob);
 void unmoved_animation(global_t *glob);
 void up_animation(global_t *glob);
-void init_music_game(music_t *music);
+void init_music_game(music_t *music, global_t *glob);
 void draw_npc(npc_t *npc, global_t *all);
 void down_animation(global_t *glob);
 void init_npc(npc_t *npc);
-int init_meeting_zone(object_t *play, global_t *all);
+int init_meeting_zone(object_t *play);
 void init_npc_bulle(npc_t *npc);
+void init_sound(music_t *music, object_t *player);
+
 
 #endif /* !RPG_H_ */

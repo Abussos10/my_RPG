@@ -9,23 +9,33 @@ NAME	=	my_rpg
 
 RM		=	rm -rf
 
-SRC		=	./src/main.c								\
-			./src/map/init_map.c						\
-			./src/initialization/init_sprites.c			\
-			./src/initialization/init_tools.c			\
-			./src/perso/player_movements.c				\
-			./src/perso/player_collisions.c 			\
-     		./src/menu/menu.c 							\
-			./src/menu/init_sprite.c					\
-			./src/menu/init_music.c						\
-			./src/menu/draw.c 							\
-			./src/menu/button.c							\
-			./src/map/map_borders.c						\
-			./src/perso/init_sprite_perso.c 			\
-			./src/perso/animation.c						\
-			./src/inventaire/inventaire.c				\
-			./src/init_music.c							\
-			./src/npc/npc.c
+SRC		=	./src/main.c										\
+			./src/map/init_map.c								\
+			./src/map/map_borders.c								\
+			./src/initialization/init_struct.c					\
+			./src/initialization/init_sprites.c					\
+			./src/initialization/init_tools.c					\
+			./src/character/player_movements.c					\
+			./src/character/player_collisions.c 				\
+			./src/character/init_sprite_perso.c 				\
+			./src/character/animation.c							\
+     		./src/menu/main_menu/menu.c 						\
+			./src/menu/main_menu/init_sprite.c					\
+			./src/menu/main_menu/init_music.c					\
+			./src/menu/main_menu/draw.c 						\
+			./src/menu/main_menu/button.c						\
+			./src/events/sword_handler.c						\
+			./src/inventaire/inventaire.c						\
+			./src/health_bar/health_bar.c						\
+			./src/npc/npc.c										\
+			./src/init_music.c									\
+			./src/enemy/init_enemy.c 							\
+			./src/enemy/animation_bis.c							\
+			./src/combat/fight.c 								\
+#			./src/menu/game_menu/game_menu.c					
+#			./src/menu/game_menu/game_menu_sprites.c    		
+#			./src/menu/game_menu/game_menu_window.c	    		
+#			./src/menu/game_menu/hitbox_tools.c
 
 OBJ		=	$(SRC:.c=.o)
 
