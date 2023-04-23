@@ -52,4 +52,3 @@ void menu_eventwin(global_t *glob, window_t *window)
         sfRenderWindow_close(glob->settings.window);
     }
 }
-

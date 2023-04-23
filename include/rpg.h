@@ -352,7 +352,9 @@ typedef struct global_s{
 
     // inventory.c
     void init_enemy(enemy_t *data);
-    void fight(global_t *glob);
+    void fight(global_t *all);
+    void fight_d(global_t *all);
+
     void enemy_animation(enemy_t *enemy);
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
@@ -400,9 +402,9 @@ typedef struct global_s{
 
 // src/menu/main_menu/
     // menu.c
-    int button_handling(menu_t *menu, global_t *glob);
-    void menu_loop(menu_t *menu, window_t *window, global_t *glob);
-    void menu_event_closer(menu_t *menu, window_t *window, global_t *glob);
+    int button_handling(menu_t *menu, global_t *all);
+    void menu_loop(menu_t *menu, window_t *window, global_t *all);
+    void menu_event_closer(menu_t *menu, window_t *window, global_t *all);
 
     // button.c
     int checkbutton_play(global_t *data);
@@ -410,7 +412,7 @@ typedef struct global_s{
     int checkbutton_quit(global_t *data, button_t *button);
 
     // draw.c
-    void draw_all_menu(menu_t *menu, global_t *glob);
+    void draw_all_menu(menu_t *menu, global_t *all);
 
     // init_music.c
     void init_music(menu_t *menu);
@@ -473,21 +475,21 @@ typedef struct global_s{
 
 // src/character/ :
     // player_movements.c
-    void enemy_animation_d(enemy_t *enemy, global_t *glob);
+    void enemy_animation_d(enemy_t *enemy);
     void move_sprites(global_t *all);
 
     // player_collisions.c
     int check_collision(global_t *all, int direction, int offsetx, int offsety);
 
     // init_sprite_perso.c
-    void init_player(global_t *glob);
+    void init_player(global_t *all);
 
     // animation.c
-    void unmoved_animation(global_t *glob);
-    void up_animation(global_t *glob);
-    void left_animation(global_t *glob);
-    void down_animation(global_t *glob);
-    void right_animation(global_t *glob);
+    void unmoved_animation(global_t *all);
+    void up_animation(global_t *all);
+    void left_animation(global_t *all);
+    void down_animation(global_t *all);
+    void right_animation(global_t *all);
 
 
 /*****************************************************************************/
@@ -513,8 +515,6 @@ typedef struct global_s{
 /*****************************************************************************/
 
 // some useful functions :
-int my_strlen(char *str);
-int my_strcmp(char *base, char *acomp);
 void eventclose(global_t *ALL);
 void init_scale(global_t *all);
 void init_pos(global_t *all);
@@ -522,25 +522,25 @@ void init_setsprite(global_t *all);
 void init_sprite(global_t *all);
 void init_button(button_t *but);
 void init_sprite_menu(menu_t *menu);
-void left_animation(global_t *glob);
-void right_animation(global_t *glob);
-void unmoved_animation(global_t *glob);
-void up_animation(global_t *glob);
-void init_music_game(music_t *music, global_t *glob);
+void left_animation(global_t *all);
+void right_animation(global_t *all);
+void unmoved_animation(global_t *all);
+void up_animation(global_t *all);
+void init_music_game(music_t *music, global_t *all);
 void draw_npc(npc_t *npc, global_t *all);
-void down_animation(global_t *glob);
+void down_animation(global_t *all);
 void init_npc(npc_t *npc);
 int init_meeting_zone(object_t *play);
 void init_npc_bulle(npc_t *npc);
 void init_sound(music_t *music, object_t *player);
-void lose(global_t *glob, window_t *window);
-void win(global_t *glob, window_t *window);
-void init_screen(global_t *glob);
-void menu_eventlose(global_t *glob, window_t *window);
-void menu_eventwin(global_t *glob, window_t *window);
-int button_handl(global_t *glob);
-void draw_win(global_t *glob);
-void draw_lose(global_t *glob);
+void lose(global_t *all, window_t *window);
+void win(global_t *all, window_t *window);
+void init_screen(global_t *all);
+void menu_eventlose(global_t *all, window_t *window);
+void menu_eventwin(global_t *all, window_t *window);
+int button_handl(global_t *all);
+void draw_win(global_t *all);
+void draw_lose(global_t *all);
 
 
 #endif /* !RPG_H_ */

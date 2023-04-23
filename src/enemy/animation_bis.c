@@ -21,10 +21,9 @@ void enemy_animation(enemy_t *enemy)
     }
 }
 
-void enemy_animation_d(enemy_t *enemy, global_t *glob)
+void enemy_animation_d(enemy_t *enemy)
 {
     int widthmax = 20 * 4;
-    sfVector2f perso = sfSprite_getPosition(glob->player->sprt);
     enemy->rect_d.top = 0;
     enemy->time_f = sfClock_getElapsedTime(enemy->clo_f);
     if (sfTime_asMilliseconds(enemy->time_f) >= 350) {
