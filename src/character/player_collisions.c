@@ -18,7 +18,7 @@ int check_collision(global_t *all, int direction, int offsetx, int offsety)
     player_pos.x / (float)5.0, player_pos.y / (float)4.9);
     sfColor pixelColor3 = sfImage_getPixel(all->mask_potion,\
     player_pos.x / (float)5.0, player_pos.y / (float)4.9);
-    if (pixelColor.r == 255 && (pixelColor2.r == 255 ||\
+    if (pixelColor.r == 255 && (pixelColor2.r == 255 ||
     all->dead_g) && (pixelColor3.r == 255 || all->dead_n))
         return 0;
     switch (direction) {
