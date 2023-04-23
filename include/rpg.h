@@ -98,16 +98,13 @@
     #define HEART               "./sprites/heart_bar/heart.png"
 
 // [SWORD SPRITES]
-    #define MASTER_SWORD        "./sprites/inventory/items/\
-    broken_master_sword.png"
+    #define MASTER_SWORD    "./sprites/inventory/items/broken_master_sword.png"
     #define ROCK_SWORD          "./sprites/background/big_sword_rock.png"
 
 // [POTION SPRITES]
-    #define HEALTH_POT          "./sprites/inventory/items/\
-    health_potion.png"
+    #define HEALTH_POT      "./sprites/inventory/items/health_potion.png"
 
-    #define SWORD_SLOT          "./sprites/inventory/items/\
-    master_sword_slot.png"
+    #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
 
 // [BACKGROUND SPRITES]
     #define RECEPTACLE          "./sprites/inventory/items/item_receptacle.png"
