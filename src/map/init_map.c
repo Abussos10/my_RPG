@@ -45,12 +45,16 @@ void screenopen(global_t *all)
             eventclose(all);
         }
         game_events(all);
-        if (LUH->health_status == 0)
-            break;
+        if (LUH->health_status == 0) break;
         if (all->enemy->life > 0) {
-            fight(all);
-            sfRenderWindow_drawSprite(all->settings.window, all->enemy->sprt, NULL);
+            fight(all), RENDER(all->settings.window, all->enemy->sprt, NULL);
         }
+        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
+            RENDER(all->settings.window,
+            all->player->npc->b_sp, NULL);
+            sfSound_play(all->music->sound);
+        }
+        printf("sword_status = %i\n", LUI->sword_status);
         if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
             break;
         sfRenderWindow_display(all->settings.window);
@@ -63,17 +67,12 @@ void game_events(global_t *all)
     move_sprites(all);
     center_sprite_on_cam(all);
     map_borders_handler(all);
-    sfRenderWindow_drawSprite(all->settings.window, all->mask_border->sprite, NULL);
-    sfRenderWindow_drawSprite(all->settings.window, all->picture[0]->sprite, NULL);
-    sfRenderWindow_drawSprite(all->settings.window, all->player->sprt, NULL);
+    RENDER(all->settings.window, all->mask_border->sprite, NULL);
+    RENDER(all->settings.window, all->picture[0]->sprite, NULL);
+    RENDER(all->settings.window, all->player->sprt, NULL);
     sword_event_handler(all);
-    sfRenderWindow_drawSprite(all->settings.window, all->mask_iso->sprite, NULL);
+    RENDER(all->settings.window, all->mask_iso->sprite, NULL);
     draw_npc(all->player->npc, all);
-    if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
-        sfRenderWindow_drawSprite(all->settings.window,
-        all->player->npc->b_sp, NULL);
-        sfSound_play(all->music->sound);
-    }
     inventory_render(all); health_bar_render(all);
 }
 

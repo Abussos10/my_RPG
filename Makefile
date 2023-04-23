@@ -31,11 +31,7 @@ SRC		=	./src/main.c										\
 			./src/init_music.c									\
 			./src/enemy/init_enemy.c 							\
 			./src/enemy/animation_bis.c							\
-			./src/combat/fight.c 								\
-#			./src/menu/game_menu/game_menu.c					
-#			./src/menu/game_menu/game_menu_sprites.c    		
-#			./src/menu/game_menu/game_menu_window.c	    		
-#			./src/menu/game_menu/hitbox_tools.c
+			./src/combat/fight.c
 
 OBJ		=	$(SRC:.c=.o)
 

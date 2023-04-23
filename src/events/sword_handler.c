@@ -24,5 +24,6 @@ void pick_the_sword(global_t *all)
 {
     LUI->sword_status = 1;
     LUI->master_sword->scale = (sfVector2f){0, 0};
-    mod_sprites(LUI->master_sword->sprite, LUI->master_sword->pos, LUI->master_sword->scale);
+    mod_sprites(LUI->master_sword->sprite,\
+    LUI->master_sword->pos, LUI->master_sword->scale);
 }

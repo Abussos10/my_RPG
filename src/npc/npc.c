@@ -35,10 +35,13 @@ int init_meeting_zone(object_t *play)
 {
     sfVector2f pos = sfSprite_getPosition(play->sprt);
     if (pos.x <= 677 && pos.y <= 478 &&
-        pos.x >= 424 && pos.y >= 388)
+        pos.x >= 424 && pos.y >= 388) {
+        //printf("ZONE\n");
         if (sfKeyboard_isKeyPressed(sfKeyE)) {
-                return (1);
+            return (1);
         }
+    } else
+        //printf("NO ZONE\n");
     return (0);
 }
 
@@ -46,7 +49,7 @@ void init_npc_bulle(npc_t *npc)
 {
     sfVector2f prout = {574, 255};
     npc->b_sp = sfSprite_create();
-    npc->b_tx = sfTexture_createFromFile("sprites/pic/bulle.png", NULL);
+    npc->b_tx = sfCff("sprites/pic/bulle.png", NULL);
     sfSprite_setTexture(npc->b_sp, npc->b_tx, sfTrue);
     sfSprite_setPosition(npc->b_sp, prout);
     sfSprite_setScale(npc->b_sp, (sfVector2f){0.4,0.4});

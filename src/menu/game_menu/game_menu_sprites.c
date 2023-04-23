@@ -16,19 +16,20 @@ void mod_all_m_sprites(g_menu *menu)
     sfColor col_back = sfSprite_getColor(menu->g_menu_background->sprite);
     col_back.a = 3.5;
     sfSprite_setColor(menu->g_menu_background->sprite, col_back);
-    //sfVector2f pos_resume = {700, 80}, scale_buttons = BUTTON_SCALE
-    //mod_sprites(menu->g_menu_background)
-    //mod_sprites(menu->resume->sprite, pos_resume, scale_buttons);
-    //mod_sprites(menu->load->sprite, my_offset(pos_resume, 0, 160), scale_buttons);
-    //mod_sprites(menu->settings->sprite, my_offset(pos_resume, 0, 320), scale_buttons);
-    //mod_sprites(menu->quit->sprite, my_offset(pos_resume, 0, 480), scale_buttons);
+    sfVector2f pos_resume = {700, 80}, scale_buttons = BUTTON_SCALE
+    mod_sprites(menu->resume->sprite, pos_resume, scale_buttons);
+    mod_sprites(menu->load->sprite,\
+    my_offset(pos_resume, 0, 160), scale_buttons);
+    mod_sprites(menu->settings->sprite,\
+    my_offset(pos_resume, 0, 320), scale_buttons);
+    mod_sprites(menu->quit->sprite,\
+    my_offset(pos_resume, 0, 480), scale_buttons);
 }
-
 
 // initialize the game menu sprites
 void init_game_menu_sprites(g_menu *menu)
 {
-    menu->g_menu_background = sInit(G_MENU_BGD); 
+    menu->g_menu_background = sInit(G_MENU_BGD);
     menu->resume = sInit(B_RESUME);
     menu->load = sInit(B_LOAD);
     menu->settings = sInit(B_SETTINGS);

@@ -14,7 +14,7 @@ void open_game_menu(global_t *all)
     menu.pos_player = sfSprite_getPosition(all->player->sprt);
     all->game_menu_state = 1;
     menu.window = all->settings.window;
-    mod_window(all, &menu); 
+    mod_window(all, &menu);
     init_game_menu_sprites(&menu);
     while (all->game_menu_state == 1) {
         while (sfRenderWindow_pollEvent(menu.window, &menu.event))
@@ -29,7 +29,8 @@ void open_game_menu(global_t *all)
 }
 
 // function to make my button react to clicks in game menu
-void g_buttons_actions(global_t *all, g_menu *menu, sfRenderWindow *window, sfEvent event)
+void g_buttons_actions(global_t *all, g_menu *menu,\
+sfRenderWindow *window, sfEvent event)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(window);
     int hit[4][2] = { {82, 222}, {243, 379}, {403, 542}, {562, 701} };
@@ -44,13 +45,12 @@ void g_buttons_actions(global_t *all, g_menu *menu, sfRenderWindow *window, sfEv
     }
     if (check_hit(mouse_pos, hit[2], hit2) == 0) {
         blink_button(menu, menu->settings, BF_SETTINGS);
-        if (event.type == sfEvtMouseButtonPressed);
-            //open_settings_menu(all, menu);
+        if (event.type == sfEvtMouseButtonPressed); //open_settings_menu(all, menu);
     }
     if (check_hit(mouse_pos, hit[3], hit2) == 0) {
         blink_button(menu, menu->quit, BF_QUIT);
         if (event.type == sfEvtMouseButtonPressed)
-                sfRenderWindow_close(menu->window);
+            sfRenderWindow_close(menu->window);
     }
 }
 

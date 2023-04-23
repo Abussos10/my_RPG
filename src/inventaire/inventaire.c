@@ -19,7 +19,8 @@ void inventory_render(global_t *all)
     mod_sprites(LUI->inv_focus->sprite,\
     LUI->inv_focus->pos, LUI->inv_focus->scale);
     move_focus(all);
-    render_several(all->settings.window, 4, LUI->hotbar, LUI->inv_focus, LUI->master_sword, LUI->sword_rock);
+    render_several(all->settings.window, 4, LUI->hotbar,\
+    LUI->inv_focus, LUI->master_sword, LUI->sword_rock);
     draw_several_items(all);
 }
 
@@ -44,10 +45,12 @@ void wait_for_release(int key)
 
 // function to draw my items in the slots
 void draw_several_items(global_t *all)
- {
+{
     if (LUI->sword_status == 1) {
-        sfRenderWindow_drawSprite(all->settings.window, LUI->sword_slot->sprite, NULL);
-        LUI->sword_slot->pos = my_offset(LUI->hotbar_pos, 230 + (93.8 * 1), 412);
-        mod_sprites(LUI->sword_slot->sprite, LUI->sword_slot->pos, SWORD_SCALE);    
+        RENDER(all->settings.window, LUI->sword_slot->sprite, NULL);
+        LUI->sword_slot->pos = my_offset\
+        (LUI->hotbar_pos, 230 + (93.8 * 1), 412);
+        mod_sprites(LUI->sword_slot->sprite, LUI->sword_slot->pos,\
+        (sfVector2f){ 0.061, 0.061 });
     }
- }
+}

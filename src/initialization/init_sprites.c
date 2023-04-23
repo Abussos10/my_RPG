@@ -29,8 +29,10 @@ void init_pos(global_t *all)
     all->player->pos = (sfVector2f){600, 300};
     LUI->sword_rock->pos = (sfVector2f){1500, 460};
     LUI->master_sword->pos = (sfVector2f){1500, 350};
-    mod_sprites(LUI->sword_rock->sprite, LUI->sword_rock->pos, LUI->sword_rock->scale);
-    mod_sprites(LUI->master_sword->sprite, LUI->master_sword->pos, LUI->master_sword->scale);
+    mod_sprites(LUI->sword_rock->sprite,\
+    LUI->sword_rock->pos, LUI->sword_rock->scale);
+    mod_sprites(LUI->master_sword->sprite,\
+    LUI->master_sword->pos, LUI->master_sword->scale);
 }
 
 // function that set the different vector of a sprite
@@ -54,7 +56,8 @@ void init_sprite(global_t *all)
     all->picture[0]->sprite = sfSprite_create();
     all->mask_image = sfImage_createFromFile(MASK_SPR);
     LUI->hotbar = sInit(HOTBAR_SPR); LUI->inv_focus = sInit(FOCUS_SPR);
-    LUI->master_sword = sInit(MASTER_SWORD); LUI->sword_rock = sInit(ROCK_SWORD);
+    LUI->master_sword = sInit(MASTER_SWORD);
+    LUI->sword_rock = sInit(ROCK_SWORD);
     LUI->sword_slot = sInit(SWORD_SLOT);
     LUH->heart[0] = sInit(HEART); LUH->heart[1] = sInit(HEART);
     LUH->heart[2] = sInit(HEART); LUH->empty_bar = sInit(EMPTY_H);

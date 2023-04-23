@@ -39,6 +39,7 @@ int main(int ac, char **av)
     usage(ac, av, all);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);
+    initialize_all(all);
     screenopen(all);
     free(all);
     return (0);

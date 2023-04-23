@@ -37,6 +37,7 @@
     #define KEYPRESSED  sfKeyboard_isKeyPressed
     #define BOUNDS      sfSprite_getGlobalBounds
     #define GET_POS     sfSprite_getPosition
+    #define RENDER      sfRenderWindow_drawSprite
     #define sInit       my_init_sprite
 
 // some define to handle player collisions correctly
@@ -57,23 +58,33 @@
 // [GAME MENU SPRITES]
     #define G_MENU_BGD      "./sprites/background/grey_background.png"
 
-    #define B_RESUME        "./sprites/buttons/game_menu/default/continue_button.png"
-    #define BF_RESUME       "./sprites/buttons/game_menu/blinking/blinking_continue_button.png"
+    #define B_RESUME        "./sprites/buttons/game_menu/\
+    default/continue_button.png"
+    #define BF_RESUME       "./sprites/buttons/game_menu/\
+    blinking/blinking_continue_button.png"
 
-    #define B_LOAD          "./sprites/buttons/game_menu/default/load_button.png"
-    #define BF_LOAD         "./sprites/buttons/game_menu/blinking/blinking_load_button.png"
+    #define B_LOAD          "./sprites/buttons/game_menu/\
+    default/load_button.png"
+    #define BF_LOAD         "./sprites/buttons/game_menu/\
+    blinking/blinking_load_button.png"
 
-    #define B_SETTINGS      "./sprites/buttons/game_menu/default/settings_button.png"
-    #define BF_SETTINGS     "./sprites/buttons/game_menu/blinking/blinking_settings_button.png"
+    #define B_SETTINGS      "./sprites/buttons/game_menu/\
+    default/settings_button.png"
+    #define BF_SETTINGS     "./sprites/buttons/game_menu/\
+    blinking/blinking_settings_button.png"
 
-    #define B_QUIT          "./sprites/buttons/game_menu/default/exit_button.png"
-    #define BF_QUIT         "./sprites/buttons/game_menu/blinking/blinking_exit_button.png"
+    #define B_QUIT          "./sprites/buttons/game_menu/\
+    default/exit_button.png"
+    #define BF_QUIT         "./sprites/buttons/game_menu/\
+    blinking/blinking_exit_button.png"
 
 // [SETTINGS MENU SPRITES]
     #define S_MENU_BGD      "./sprites/background/grey_background.png"
 
-    #define SOUND_BAR       "./sprites/buttons/settings_menu/sound_bar/soundbar.png"
-    #define SOUND_ICON      "./sprites/buttons/settings_menu/sound_bar/soundicon.png"
+    #define SOUND_BAR       "./sprites/buttons/settings_menu/\
+    sound_bar/soundbar.png"
+    #define SOUND_ICON      "./sprites/buttons/settings_menu/\
+    sound_bar/soundicon.png"
 
 // [INVENTORY SPRITES]
     #define MASK_SPR        "./sprites/pic/test/map_mask.png"
@@ -92,11 +103,19 @@
     #define MASK_ISO        "./sprites/background/mask_iso.png"
     #define MASK_BORDER     "./sprites/background/mask_borders.png"
 
-    #define BUTTON_SCALE        (sfVector2f){0.865, 0.7};
-    #define SOUND_BAR_SCALE     (sfVector2f){3, 2.3};
-    #define SOUND_ICON_SCALE    (sfVector2f){0.4, 0.4};
-    #define SWORD_SCALE         (sfVector2f){0.061, 0.061}
-    #define S_DEFAULT           (sfVector2f){1, 1}; 
+    #define BUTTON_SCALE        (sfVector2f){\
+        0.865, 0.7\
+        };
+    #define SOUND_BAR_SCALE     (sfVector2f){\
+        3, 2.3\
+        };
+    #define SOUND_ICON_SCALE    (sfVector2f){\
+        0.4, 0.4\
+        };
+    #define S_DEFAULT           (sfVector2f){\
+        1, 1\
+        };
+
 // some shortcuts
     #define LUI  all->inv
     #define LUH  all->hea
@@ -133,7 +152,7 @@ typedef struct npc_s {
     sfVector2f scale;
     sfVector2f e_pos;
     sfVector2f e_scale;
-}npc_t;
+} npc_t;
 
 typedef struct music_s {
     sfMusic *music;
@@ -263,7 +282,7 @@ typedef struct global_s{
     void game_process(global_t *all);
 
 
-/**********************************[INITIALIZATION PROTOTYPES]***********************************/
+/**********************[INITIALIZATION PROTOTYPES]****************************/
 
 // src/initialization/ :
 
@@ -283,12 +302,12 @@ typedef struct global_s{
     int render_several(sfRenderWindow *window, int count, ...);
     int destroy_several(int count, ...);
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
 
 
-/************************************[INVENTORY PROTOTYPES]**************************************/
+/***********************[INVENTORY PROTOTYPES]********************************/
 
 // src/inventaire/ :
 
@@ -301,12 +320,12 @@ typedef struct global_s{
     void wait_for_release(int key);
     void draw_several_items(global_t *all);
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
 
 
-/**************************************[HEALTH PROTOTYPES]***************************************/
+/*************************[HEALTH PROTOTYPES]*********************************/
 
 // src/health_bar/ :
 
@@ -314,12 +333,12 @@ typedef struct global_s{
     void health_bar_render(global_t *all);
     void health_handler(global_t *all, sfVector2f player_pos);
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
 
 
-/**************************************[HEALTH PROTOTYPES]***************************************/
+/***************************[HEALTH PROTOTYPES]*******************************/
 
 // src/events/ :
 
@@ -327,10 +346,10 @@ typedef struct global_s{
     void sword_event_handler(global_t *all);
     void pick_the_sword(global_t *all);
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
-/***************************************[MENU PROTOTYPES]****************************************/
+/****************************[MENU PROTOTYPES]********************************/
 
 // src/menu/main_menu/
     // menu.c
@@ -360,7 +379,8 @@ typedef struct global_s{
 
     // game_menu.c
     void open_game_menu(global_t *all);
-    void g_buttons_actions(global_t *all, g_menu *menu, sfRenderWindow *window, sfEvent event);
+    void g_buttons_actions(global_t *all, g_menu *menu,\
+    sfRenderWindow *window, sfEvent event);
     void game_menu_event(global_t *all, g_menu *menu);
 
     // game_menu_sprites.c
@@ -381,17 +401,17 @@ typedef struct global_s{
     void s_buttons_actions(s_menu *menu, sfRenderWindow *window, sfEvent event);
     void settings_menu_event(global_t *all, s_menu *menu);
 
-    // settings_menu_sprites.c 
+    // settings_menu_sprites.c
     void init_settings_menu_sprites(global_t *all, s_menu *menu);
 
 
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
 
 
-/*************************************[CHARACTER PROTOTYPES]*************************************/
+/***********************[CHARACTER PROTOTYPES]********************************/
 
 // src/character/ :
     // player_movements.c
@@ -411,12 +431,12 @@ typedef struct global_s{
     void right_animation(global_t *glob);
 
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 
 
 
-/****************************************[MAP PROTOTYPES]*********************/
+/*****************************[MAP PROTOTYPES]********************************/
 
 // src/map/ :
     // map_borders.c
@@ -431,14 +451,11 @@ typedef struct global_s{
     void init_value(global_t *all);
     void game_events(global_t *all);
 
-/************************************************************************************************/
+/*****************************************************************************/
 
 // some useful functions :
 int my_strlen(char *str);
 int my_strcmp(char *base, char *acomp);
-
-//			./src/menu/settings_menu/settings_menu.c 			
-//			./src/menu/settings_menu/settings_menu_sprites.c	
 void eventclose(global_t *ALL);
 void init_scale(global_t *all);
 void init_pos(global_t *all);

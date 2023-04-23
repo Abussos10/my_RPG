@@ -19,7 +19,7 @@ void mod_all_s_sprites(s_menu *menu)
 // initialize the settings menu sprites
 void init_settings_menu_sprites(global_t *all, s_menu *menu)
 {
-    menu->s_menu_background = sInit(G_MENU_BGD); 
+    menu->s_menu_background = sInit(G_MENU_BGD);
     menu->sound_bar = sInit(SOUND_BAR);
     menu->sound_icon = sInit(SOUND_ICON);
     mod_all_s_sprites(menu);
