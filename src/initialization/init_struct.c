@@ -17,4 +17,6 @@ void initialize_all(global_t *all)
     LUI->index_hpot = 1; LUI->index_sword = 5; LUI->sword_status = 0;
     LUI->hpot_status = 0; LUI->focus_index = 0; LUH->health_status = 2;
     LUI->hpot_picked = 0;
+    all->dead_g = 0;
+    all->dead_n = 0;
 }

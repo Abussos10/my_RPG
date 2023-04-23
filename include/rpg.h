@@ -312,6 +312,8 @@ typedef struct global_s{
     music_t *music;
     enemy_t *enemy;
     loose_win_t *end;
+    int dead_g;
+    int dead_n;
 } global_t;
 
 // src/main.c :
@@ -542,6 +544,6 @@ void menu_eventwin(global_t *all, window_t *window);
 int button_handl(global_t *all);
 void draw_win(global_t *all);
 void draw_lose(global_t *all);
-
+void update_enemy(global_t *all);
 
 #endif /* !RPG_H_ */
