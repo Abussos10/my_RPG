@@ -21,6 +21,9 @@ int usage(int ac, char **av, global_t *all)
     all->enemy->clo = sfClock_create();
     all->enemy->clo_hit = sfClock_create();
     all->enemy->clo_d = sfClock_create();
+    all->enemy->clo_a = sfClock_create();
+    all->enemy->clo_f = sfClock_create();
+    all->enemy->clo_hit_a = sfClock_create();
     all->player->life = 0;
     return (0);
 }

@@ -252,7 +252,20 @@ typedef struct enemy_s {
     sfClock *clo_d;
     sfTime time_d;
     int life;
+    sfSprite *sprt_d;
+    sfTexture *txt_d;
+    sfIntRect rect_d;
+    sfVector2f pos_d;
+    sfVector2f scale_d;
+    sfVector2f p_pos_d;
+    sfClock *clo_a;
+    sfTime time_f;
+    sfClock *clo_hit_a;
+    sfTime time_hit_a;
+    sfClock *clo_f;
+    sfTime time_a;
 
+    int life_d;
 }enemy_t;
 
 // main structure
@@ -314,6 +327,7 @@ typedef struct global_s{
     // inventaire.c
     void init_enemy(enemy_t *data);
     void fight(global_t *glob);
+    void fight_d(global_t *glob);
     void enemy_animation(enemy_t *enemy, global_t *glob);
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
@@ -415,6 +429,7 @@ typedef struct global_s{
 
 // src/character/ :
     // player_movements.c
+    void enemy_animation_d(enemy_t *enemy, global_t *glob);
     void move_sprites(global_t *all);
 
     // player_collisions.c

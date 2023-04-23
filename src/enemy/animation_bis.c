@@ -21,3 +21,18 @@ void enemy_animation(enemy_t *enemy, global_t *glob)
         sfSprite_setTextureRect(enemy->sprt, enemy->rect);
     }
 }
+
+void enemy_animation_d(enemy_t *enemy, global_t *glob)
+{
+    int widthmax = 20 * 4;
+    sfVector2f perso = sfSprite_getPosition(glob->player->sprt);
+    enemy->rect_d.top = 0;
+    enemy->time_f = sfClock_getElapsedTime(enemy->clo_f);
+    if (sfTime_asMilliseconds(enemy->time_f) >= 350) {
+        sfClock_restart(enemy->clo_f);
+        enemy->rect_d.left += 28;
+        if (enemy->rect_d.left >= widthmax)
+            enemy->rect_d.left = 0;
+        sfSprite_setTextureRect(enemy->sprt_d, enemy->rect_d);
+    }
+}
