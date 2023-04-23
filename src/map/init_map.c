@@ -30,7 +30,7 @@ void eventclose(global_t *all)
 }
 
 // loop of the game
-void screenopen(global_t *all)
+int screenopen(global_t *all)
 {
     init_enemy(all->enemy);
     all->enemy->life = 100;
@@ -46,11 +46,12 @@ void screenopen(global_t *all)
             eventclose(all);
         }
         game_events(all);
-        if (LUH->health_status == 0) break;
+        if (LUH->health_status == 0) return (1);
         if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
             break;
         sfRenderWindow_display(all->settings.window);
     }
+    return (0);
 }
 
 // function to handle every events in the game loop
