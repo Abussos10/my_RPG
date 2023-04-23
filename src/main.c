@@ -52,6 +52,7 @@ int main(void)
     all->end = malloc(sizeof(loose_win_t));
     usage(all);
     if (!(all->settings.window)) return 84;
+    lose(all, window);
     menu_loop(menu, window, all);
     initialize_all(all);
     screenopen(all);

@@ -48,7 +48,7 @@ int screenopen(global_t *all)
         }
         sfRenderWindow_display(all->settings.window);
     }
-    update_enemy(all);
+    //update_enemy(all);
     return (0);
 }
 
