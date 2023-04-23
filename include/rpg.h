@@ -39,7 +39,7 @@
     #define GET_POS     sfSprite_getPosition
     #define RENDER      sfRenderWindow_drawSprite
     #define sInit       my_init_sprite
-
+    #define ply_spr     all->player->sprt
 // some define to handle player collisions correctly
     #define LEFT    1
     #define RIGHT   2
@@ -56,58 +56,60 @@
 
 // different path for sprites so it's easily modifiable
 // [GAME MENU SPRITES]
-    #define G_MENU_BGD      "./sprites/background/grey_background.png"
+    #define G_MENU_BGD          "./sprites/background/grey_background.png"
 
-    #define B_RESUME        "./sprites/buttons/game_menu/\
+    #define B_RESUME            "./sprites/buttons/game_menu/\
     default/continue_button.png"
-    #define BF_RESUME       "./sprites/buttons/game_menu/\
+    #define BF_RESUME           "./sprites/buttons/game_menu/\
     blinking/blinking_continue_button.png"
 
-    #define B_LOAD          "./sprites/buttons/game_menu/\
+    #define B_LOAD              "./sprites/buttons/game_menu/\
     default/load_button.png"
-    #define BF_LOAD         "./sprites/buttons/game_menu/\
+    #define BF_LOAD             "./sprites/buttons/game_menu/\
     blinking/blinking_load_button.png"
 
-    #define B_SETTINGS      "./sprites/buttons/game_menu/\
+    #define B_SETTINGS          "./sprites/buttons/game_menu/\
     default/settings_button.png"
-    #define BF_SETTINGS     "./sprites/buttons/game_menu/\
+    #define BF_SETTINGS         "./sprites/buttons/game_menu/\
     blinking/blinking_settings_button.png"
 
-    #define B_QUIT          "./sprites/buttons/game_menu/\
+    #define B_QUIT              "./sprites/buttons/game_menu/\
     default/exit_button.png"
-    #define BF_QUIT         "./sprites/buttons/game_menu/\
+    #define BF_QUIT             "./sprites/buttons/game_menu/\
     blinking/blinking_exit_button.png"
 
 // [SETTINGS MENU SPRITES]
-    #define S_MENU_BGD      "./sprites/background/grey_background.png"
+    #define S_MENU_BGD          "./sprites/background/grey_background.png"
 
-    #define SOUND_BAR       "./sprites/buttons/settings_menu/\
+    #define SOUND_BAR           "./sprites/buttons/settings_menu/\
     sound_bar/soundbar.png"
-    #define SOUND_ICON      "./sprites/buttons/settings_menu/\
+    #define SOUND_ICON          "./sprites/buttons/settings_menu/\
     sound_bar/soundicon.png"
 
 // [INVENTORY SPRITES]
-    #define MASK_SPR        "./sprites/background/map_mask.png"
-    #define HOTBAR_SPR      "./sprites/inventory/hotbar.png"
-    #define FOCUS_SPR       "./sprites/inventory/green_focus.png"
+    #define MASK_SPR            "./sprites/background/map_mask.png"
+    #define MASK_BOSS_ZONE      "./sprites/background/map_mask_boss.png"
+    #define MASK_POTION_ZONE    "./sprites/background/map_mask_first_part.png"
+    #define HOTBAR_SPR          "./sprites/inventory/hotbar.png"
+    #define FOCUS_SPR           "./sprites/inventory/green_focus.png"
 
 // [HEART_BAR SPRITES]
-    #define EMPTY_H         "./sprites/heart_bar/empty_bar.png"
-    #define HEART           "./sprites/heart_bar/heart.png"
+    #define EMPTY_H             "./sprites/heart_bar/empty_bar.png"
+    #define HEART               "./sprites/heart_bar/heart.png"
 
 // [SWORD SPRITES]
-    #define MASTER_SWORD    "./sprites/inventory/items/broken_master_sword.png"
-    #define ROCK_SWORD      "./sprites/background/big_sword_rock.png"
+    #define MASTER_SWORD        "./sprites/inventory/items/broken_master_sword.png"
+    #define ROCK_SWORD          "./sprites/background/big_sword_rock.png"
 
 // [POTION SPRITES]
-    #define HEALTH_POT      "./sprites/inventory/items/health_potion.png"
+    #define HEALTH_POT          "./sprites/inventory/items/health_potion.png"
 
-    #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
+    #define SWORD_SLOT          "./sprites/inventory/items/master_sword_slot.png"
 
 // [BACKGROUND SPRITES]
-    #define RECEPTACLE      "./sprites/inventory/items/item_receptacle.png"
-    #define MASK_ISO        "./sprites/background/mask_iso.png"
-    #define MASK_BORDER     "./sprites/background/mask_borders.png"
+    #define RECEPTACLE          "./sprites/inventory/items/item_receptacle.png"
+    #define MASK_ISO            "./sprites/background/mask_iso.png"
+    #define MASK_BORDER         "./sprites/background/mask_borders.png"
 
     #define BUTTON_SCALE        (sfVector2f){\
         0.865, 0.7\
@@ -309,9 +311,14 @@ typedef struct global_s{
     int game_menu_state;
     int settings_menu_state;
     sfImage *mask_image;
+    sfImage *mask_tmp;
+    sfImage *mask_potion;
+
     music_t *music;
     enemy_t *enemy;
     loose_win_t *end;
+    int dead_g;
+    int dead_n;
 } global_t;
 
 // src/main.c :

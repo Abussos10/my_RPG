@@ -14,7 +14,6 @@ void init_scale(global_t *all)
     all->mask_iso->scale = (sfVector2f){5, 5};
     all->mask_border->scale = (sfVector2f){5, 5};
     all->mask_iso->scale = (sfVector2f){5, 5};
-    all->mask_border->scale = (sfVector2f){5, 5};
     all->player->scale = (sfVector2f){0.2, 0.2};
     LUI->hotbar->scale = (sfVector2f){1.3, 1.3};
     LUI->inv_focus->scale = (sfVector2f){0.25, 0.25};
@@ -65,6 +64,8 @@ void init_sprite(global_t *all)
     all->picture[0]->texture = sfCff("./sprites/pic/map.png", NULL);
     all->picture[0]->sprite = sfSprite_create();
     all->mask_image = sfImage_createFromFile(MASK_SPR);
+    all->mask_tmp = sfImage_createFromFile(MASK_BOSS_ZONE);
+    all->mask_potion = sfImage_createFromFile(MASK_POTION_ZONE);
     LUI->hotbar = sInit(HOTBAR_SPR); LUI->inv_focus = sInit(FOCUS_SPR);
     LUI->master_sword = sInit(MASTER_SWORD);
     LUI->sword_rock = sInit(ROCK_SWORD); LUI->hreceptacle = sInit(RECEPTACLE);
