@@ -6,8 +6,19 @@
 */
 
 #include "../include/rpg.h"
-int usage(global_t *all)
+
+int check_win_or_lose(int index, global_t *all, window_t *window)
 {
+    if (index == 0)
+        win(all, window);
+    if (index == 1)
+        lose(all, window);
+    return (0);
+}
+
+int usage(int ac, char **av, global_t *all)
+{
+    init_screen(all);
     init_window(all);
     init_sprite(all);
     init_scale(all);
@@ -38,12 +49,13 @@ int main(void)
     all->music = malloc(sizeof(music_t));
     all->player->npc = malloc(sizeof(npc_t));
     all->enemy = malloc(sizeof(enemy_t));
-    usage(all);
+    all->end = malloc(sizeof(loose_win_t));
+    usage(ac, av, all);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);
     initialize_all(all);
     screenopen(all);
-    check_win_or_lose(screenopen(all), all);
+    check_win_or_lose(screenopen(all), all, window);
     free(all);
     return (0);
 }
