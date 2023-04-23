@@ -39,7 +39,7 @@ int init_meeting_zone(object_t *play)
         if (sfKeyboard_isKeyPressed(sfKeyE)) {
             return (1);
         }
-    } else
+    }
     return (0);
 }
 

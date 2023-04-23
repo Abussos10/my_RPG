@@ -7,6 +7,14 @@
 
 #include "../include/rpg.h"
 
+int check_win_or_lose(int index, global_t *all)
+{
+    if (index == 0)
+        printf("Win !\n");
+    if (index == 1)
+        printf("Loose !\n");
+}
+
 int usage(int ac, char **av, global_t *all)
 {
     init_window(all);
@@ -44,6 +52,7 @@ int main(int ac, char **av)
     menu_loop(menu, window, all);
     initialize_all(all);
     screenopen(all);
+    check_win_or_lose(screenopen(all), all);
     free(all);
     return (0);
 }
