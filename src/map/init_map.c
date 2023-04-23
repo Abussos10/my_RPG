@@ -48,7 +48,10 @@ int screenopen(global_t *all)
         }
         sfRenderWindow_display(all->settings.window);
     }
+<<<<<<< HEAD
     //update_enemy(all);
+=======
+>>>>>>> 4148cd7a3fa69952abf8e15acf526995ff9c2c22
     return (0);
 }
 

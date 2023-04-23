@@ -10,6 +10,7 @@
 // function that handle any event in the game
 void events_handler(global_t *all)
 {
+    update_enemy(all);
     use_item(all);
     sword_event_handler(all);
     hpot_event_handler(all);
