@@ -146,6 +146,11 @@ typedef struct object_s {
     sfVector2f pos;
     sfVector2f scale;
     sfVector2f p_pos;
+    int life;
+    sfSound *sound;
+    sfSoundBuffer *buff;
+    sfSound *scr;
+    sfSoundBuffer *scr_b;
     npc_t *npc;
 } object_t;
 
@@ -211,6 +216,22 @@ typedef struct settings_menu {
     l_spr *sound_icon;
 } s_menu;
 
+typedef struct enemy_s {
+    sfSprite *sprt;
+    sfTexture *txt;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfVector2f p_pos;
+    sfClock *clo;
+    sfTime time;
+    sfClock *clo_hit;
+    sfTime time_hit;
+    sfClock *clo_d;
+    sfTime time_d;
+    int life;
+
+}enemy_t;
 
 // main structure
 typedef struct global_s{
@@ -226,6 +247,7 @@ typedef struct global_s{
     int settings_menu_state;
     sfImage *mask_image;
     music_t *music;
+    enemy_t *enemy;
 } global_t;
 
 // src/main.c :
@@ -265,6 +287,9 @@ typedef struct global_s{
 // src/inventaire/ :
 
     // inventaire.c
+    void init_enemy(enemy_t *data);
+    void fight(global_t *glob);
+    void enemy_animation(enemy_t *enemy, global_t *glob);
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
     void wait_for_release(int key);
@@ -385,7 +410,7 @@ typedef struct global_s{
 
 
 
-/****************************************[MAP PROTOTYPES]****************************************/
+/****************************************[MAP PROTOTYPES]*********************/
 
 // src/map/ :
     // map_borders.c
@@ -419,13 +444,13 @@ void left_animation(global_t *glob);
 void right_animation(global_t *glob);
 void unmoved_animation(global_t *glob);
 void up_animation(global_t *glob);
-void init_music_game(music_t *music);
+void init_music_game(music_t *music, global_t *glob);
 void draw_npc(npc_t *npc, global_t *all);
 void down_animation(global_t *glob);
 void init_npc(npc_t *npc);
 int init_meeting_zone(object_t *play);
 void init_npc_bulle(npc_t *npc);
-void init_sound(music_t *music);
+void init_sound(music_t *music, object_t *player);
 
 
 #endif /* !RPG_H_ */

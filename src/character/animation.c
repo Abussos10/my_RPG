@@ -14,7 +14,7 @@ void unmoved_animation(global_t *glob)
 
     glob->player->rect.top = 0;
     glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
-    if (sfTime_asMilliseconds(glob->clock->time) >= 200) {
+    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
         sfClock_restart(glob->clock->clk);
         glob->player->rect.left += 53;
         if (glob->player->rect.left >= widthmax)
@@ -46,7 +46,7 @@ void left_animation(global_t *glob)
 
     glob->player->rect.top = 297;
     glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
-    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+    if (sfTime_asMilliseconds(glob->clock->time) >= 100) {
         sfClock_restart(glob->clock->clk);
         glob->player->rect.left += 54;
         if (glob->player->rect.left >= widthmax)
@@ -62,7 +62,7 @@ void down_animation(global_t *glob)
 
     glob->player->rect.top = 240;
     glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
-    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+    if (sfTime_asMilliseconds(glob->clock->time) >= 100) {
         sfClock_restart(glob->clock->clk);
         glob->player->rect.left += 53;
         if (glob->player->rect.left >= widthmax)
@@ -78,7 +78,7 @@ void right_animation(global_t *glob)
 
     glob->player->rect.top = 410;
     glob->clock->time = sfClock_getElapsedTime(glob->clock->clk);
-    if (sfTime_asMilliseconds(glob->clock->time) >= 150) {
+    if (sfTime_asMilliseconds(glob->clock->time) >= 100) {
         sfClock_restart(glob->clock->clk);
         glob->player->rect.left += 54;
         if (glob->player->rect.left >= widthmax)

@@ -28,7 +28,10 @@ SRC		=	./src/main.c										\
 			./src/inventaire/inventaire.c						\
 			./src/health_bar/health_bar.c						\
 			./src/npc/npc.c										\
-			./src/init_music.c
+			./src/init_music.c									\
+			./src/enemy/init_enemy.c 							\
+			./src/enemy/animation_bis.c							\
+			./src/combat/fight.c 								\
 #			./src/menu/game_menu/game_menu.c					
 #			./src/menu/game_menu/game_menu_sprites.c    		
 #			./src/menu/game_menu/game_menu_window.c	    		

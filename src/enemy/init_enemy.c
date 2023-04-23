@@ -12,7 +12,7 @@ void init_enemy(enemy_t *data)
     data->sprt = sfSprite_create();
     data->txt = sfTexture_createFromFile("assets/chevalié.png", NULL);
     sfSprite_setTexture(data->sprt, data->txt, sfTrue);
-    data->rect = (sfIntRect){0, 0, 30, 50};
+    data->rect = (sfIntRect){0, 0, 26, 41};
     sfSprite_setScale(data->sprt, (sfVector2f) {4, 4});
     sfSprite_setTextureRect(data->sprt, data->rect);
     data->pos = (sfVector2f){1500, 700};

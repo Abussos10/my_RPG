@@ -22,7 +22,7 @@ void eventclose(global_t *all)
 {
     if (all->settings.event.type == sfEvtClosed)
         sfRenderWindow_close(all->settings.window);
-    if (all->settings.event.type == sfEvtKeyPressed && 
+    if (all->settings.event.type == sfEvtKeyPressed &&
     all->settings.event.key.code == sfKeyEscape) {
         //open_game_menu(all);
     }
@@ -31,6 +31,8 @@ void eventclose(global_t *all)
 // loop of the game
 void screenopen(global_t *all)
 {
+    init_enemy(all->enemy);
+    all->enemy->life = 100;
     all->settings.view = sfView_create();
     sfView_setSize(all->settings.view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(all->settings.window, all->settings.view);
@@ -50,12 +52,20 @@ void screenopen(global_t *all)
                         all->player->sprt, NULL);
         sword_event_handler(all);
         draw_npc(all->player->npc, all);
-        if (init_meeting_zone(all->player) == 1) {
+        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
             sfRenderWindow_drawSprite(all->settings.window,
             all->player->npc->b_sp, NULL);
             sfSound_play(all->music->sound);
         }
+        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
+            break;
         inventory_render(all); health_bar_render(all);
+        if (all->enemy->life > 0) {
+            fight(all);
+            sfRenderWindow_drawSprite(all->settings.window, all->enemy->sprt, NULL);
+        }
+        if (LUH->health_status == 0)
+            break;
         sfRenderWindow_display(all->settings.window);
     }
 }
