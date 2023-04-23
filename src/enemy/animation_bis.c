@@ -7,10 +7,9 @@
 
 #include "../../include/rpg.h"
 
-void enemy_animation(enemy_t *enemy, global_t *glob)
+void enemy_animation(enemy_t *enemy)
 {
     int widthmax = 20 * 4;
-    sfVector2f perso = sfSprite_getPosition(glob->player->sprt);
     enemy->rect.top = 0;
     enemy->time = sfClock_getElapsedTime(enemy->clo);
     if (sfTime_asMilliseconds(enemy->time) >= 350) {

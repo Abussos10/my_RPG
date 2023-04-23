@@ -45,7 +45,7 @@ sfRenderWindow *window, sfEvent event)
     }
     if (check_hit(mouse_pos, hit[2], hit2) == 0) {
         blink_button(menu, menu->settings, BF_SETTINGS);
-        if (event.type == sfEvtMouseButtonPressed); //open_settings_menu(all, menu);
+        if (event.type == sfEvtMouseButtonPressed);
     }
     if (check_hit(mouse_pos, hit[3], hit2) == 0) {
         blink_button(menu, menu->quit, BF_QUIT);

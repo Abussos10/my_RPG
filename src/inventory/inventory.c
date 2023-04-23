@@ -19,8 +19,8 @@ void inventory_render(global_t *all)
     mod_sprites(LUI->inv_focus->sprite,\
     LUI->inv_focus->pos, LUI->inv_focus->scale);
     move_focus(all);
-    render_several(all->settings.window, 4, LUI->hotbar,\
-    LUI->inv_focus, LUI->master_sword, LUI->sword_rock);
+    render_several(all->settings.window, 6, LUI->master_sword, LUI->sword_rock,\
+    LUI->hreceptacle, LUI->health_pot, LUI->hotbar, LUI->inv_focus);
     draw_several_items(all);
 }
 
@@ -49,8 +49,15 @@ void draw_several_items(global_t *all)
     if (LUI->sword_status == 1) {
         RENDER(all->settings.window, LUI->sword_slot->sprite, NULL);
         LUI->sword_slot->pos = my_offset\
-        (LUI->hotbar_pos, 230 + (93.8 * 1), 412);
+        (LUI->hotbar_pos, 230 + (93.8 * LUI->index_hpot), 412);
         mod_sprites(LUI->sword_slot->sprite, LUI->sword_slot->pos,\
         (sfVector2f){ 0.061, 0.061 });
+    }
+    if (LUI->hpot_status == 1) {
+        RENDER(all->settings.window, LUI->health_pot_slot->sprite, NULL);
+        LUI->health_pot_slot->pos = my_offset\
+        (LUI->hotbar_pos, 233 + (93.8 * LUI->index_hpot), 415);
+        mod_sprites(LUI->health_pot_slot->sprite, LUI->health_pot_slot->pos,\
+        (sfVector2f){ 0.2, 0.2 });
     }
 }

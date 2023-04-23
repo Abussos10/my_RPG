@@ -87,7 +87,7 @@
     sound_bar/soundicon.png"
 
 // [INVENTORY SPRITES]
-    #define MASK_SPR        "./sprites/pic/test/map_mask.png"
+    #define MASK_SPR        "./sprites/background/map_mask.png"
     #define HOTBAR_SPR      "./sprites/inventory/hotbar.png"
     #define FOCUS_SPR       "./sprites/inventory/green_focus.png"
 
@@ -99,7 +99,13 @@
     #define MASTER_SWORD    "./sprites/inventory/items/broken_master_sword.png"
     #define ROCK_SWORD      "./sprites/background/big_sword_rock.png"
 
+// [POTION SPRITES]
+    #define HEALTH_POT      "./sprites/inventory/items/health_potion.png"
+
     #define SWORD_SLOT      "./sprites/inventory/items/master_sword_slot.png"
+
+// [BACKGROUND SPRITES]
+    #define RECEPTACLE      "./sprites/inventory/items/item_receptacle.png"
     #define MASK_ISO        "./sprites/background/mask_iso.png"
     #define MASK_BORDER     "./sprites/background/mask_borders.png"
 
@@ -199,9 +205,16 @@ typedef struct inventory_s {
     l_spr *sword_rock;
     l_spr *master_sword;
     l_spr *sword_slot;
+    l_spr *hreceptacle;
+    l_spr *health_pot;
+    l_spr *health_pot_slot;
 
     sfVector2f hotbar_pos;
+    int index_hpot;
+    int index_sword;
+
     int sword_status;
+    int hpot_status;
     int focus_index;
 } inv_t;
 
@@ -278,7 +291,7 @@ typedef struct global_s{
 // src/main.c :
 
 // src/game_process.c
-    int usage(int ac, char **av, global_t *all);
+    int usage(global_t *all);
     void game_process(global_t *all);
 
 
@@ -294,6 +307,7 @@ typedef struct global_s{
     void init_pos(global_t *all);
     void init_setsprite(global_t *all);
     void init_sprite(global_t *all);
+    void init_sprite_bis(global_t *all);
 
     // init_tools.c
     l_spr *my_init_sprite(char *sprite_path);
@@ -307,14 +321,14 @@ typedef struct global_s{
 
 
 
-/***********************[INVENTORY PROTOTYPES]********************************/
+/***********************[ENEMY PROTOTYPES]********************************/
 
-// src/inventaire/ :
+// src/inventory/ :
 
-    // inventaire.c
+    // inventory.c
     void init_enemy(enemy_t *data);
     void fight(global_t *glob);
-    void enemy_animation(enemy_t *enemy, global_t *glob);
+    void enemy_animation(enemy_t *enemy);
     void inventory_render(global_t *all);
     void move_focus(global_t *all);
     void wait_for_release(int key);
@@ -338,13 +352,21 @@ typedef struct global_s{
 
 
 
-/***************************[HEALTH PROTOTYPES]*******************************/
+/***************************[EVENTS PROTOTYPES]*******************************/
 
 // src/events/ :
+
+    // events_handler.c
+    void events_handler(global_t *all);
+    void use_item(global_t *all);
 
     // sword_handler.c
     void sword_event_handler(global_t *all);
     void pick_the_sword(global_t *all);
+
+    // health_pot_handler.c
+    void hpot_event_handler(global_t *all);
+    void pick_the_hpot(global_t *all);
 
 /*****************************************************************************/
 
@@ -405,6 +427,17 @@ typedef struct global_s{
     void init_settings_menu_sprites(global_t *all, s_menu *menu);
 
 
+
+/*****************************************************************************/
+
+
+
+
+/****************************[MENU PROTOTYPES]********************************/
+
+// src/sound/
+    // sound_handler.c
+    void sound_handler(global_t *all);
 
 /*****************************************************************************/
 

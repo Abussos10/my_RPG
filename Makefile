@@ -15,6 +15,8 @@ SRC		=	./src/main.c										\
 			./src/initialization/init_struct.c					\
 			./src/initialization/init_sprites.c					\
 			./src/initialization/init_tools.c					\
+			./src/sound/init_music.c							\
+			./src/sound/sound_handler.c							\
 			./src/character/player_movements.c					\
 			./src/character/player_collisions.c 				\
 			./src/character/init_sprite_perso.c 				\
@@ -24,11 +26,12 @@ SRC		=	./src/main.c										\
 			./src/menu/main_menu/init_music.c					\
 			./src/menu/main_menu/draw.c 						\
 			./src/menu/main_menu/button.c						\
+			./src/events/events_handler.c 						\
+			./src/events/health_pot_handler.c		 			\
 			./src/events/sword_handler.c						\
-			./src/inventaire/inventaire.c						\
+			./src/inventory/inventory.c							\
 			./src/health_bar/health_bar.c						\
 			./src/npc/npc.c										\
-			./src/init_music.c									\
 			./src/enemy/init_enemy.c 							\
 			./src/enemy/animation_bis.c							\
 			./src/combat/fight.c

@@ -7,7 +7,7 @@
 
 #include "../include/rpg.h"
 
-int usage(int ac, char **av, global_t *all)
+int usage(global_t *all)
 {
     init_window(all);
     init_sprite(all);
@@ -25,7 +25,7 @@ int usage(int ac, char **av, global_t *all)
     return (0);
 }
 
-int main(int ac, char **av)
+int main(void)
 {
     global_t *all = malloc(sizeof(global_t));
     menu_t *menu = malloc(sizeof(menu_t));
@@ -36,7 +36,7 @@ int main(int ac, char **av)
     all->music = malloc(sizeof(music_t));
     all->player->npc = malloc(sizeof(npc_t));
     all->enemy = malloc(sizeof(enemy_t));
-    usage(ac, av, all);
+    usage(all);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);
     initialize_all(all);
