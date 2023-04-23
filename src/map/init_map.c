@@ -11,6 +11,7 @@
 void init_window(global_t *all)
 {
     init_value(all);
+    all->enemy->life_d = 100;
     MODE.bitsPerPixel = 64;
     MODE.width = 1920;
     MODE.height = 1080;
@@ -28,7 +29,7 @@ void eventclose(global_t *all)
 }
 
 // loop of the game
-void screenopen(global_t *all)
+int screenopen(global_t *all)
 {
     init_enemy(all->enemy); sound_handler(all);
     while (sfRenderWindow_isOpen(all->settings.window)) {
@@ -37,19 +38,12 @@ void screenopen(global_t *all)
         &(all->settings.event)))
             eventclose(all);
         game_events(all);
-        if (LUH->health_status == 0) break;
-        if (all->enemy->life > 0)
-            fight(all), RENDER(all->settings.window, all->enemy->sprt, NULL);
-        inventory_render(all); health_bar_render(all);
-        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
-            RENDER(all->settings.window,
-            all->player->npc->b_sp, NULL);
-            sfSound_play(all->music->sound);
-        }
+        if (LUH->health_status == 0) return (1);
         if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
             break;
         sfRenderWindow_display(all->settings.window);
     }
+    return (0);
 }
 
 // function to handle every events in the game loop
@@ -64,6 +58,16 @@ void game_events(global_t *all)
     events_handler(all);
     RENDER(all->settings.window, all->mask_iso->sprite, NULL);
     draw_npc(all->player->npc, all);
+    if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
+        RENDER(all->settings.window,
+        all->player->npc->b_sp, NULL);
+        sfSound_play(all->music->sound);
+    }
+    if (all->enemy->life_d > 0)
+        fight_d(all), RENDER(all->settings.window, all->enemy->sprt_d, NULL);
+    if (all->enemy->life > 0)
+        fight(all), RENDER(all->settings.window, all->enemy->sprt, NULL);
+    inventory_render(all); health_bar_render(all);
 }
 
 // function to initialize some useful value in my struct

@@ -240,6 +240,15 @@ typedef struct game_menu {
     l_spr *blink;
 } g_menu;
 
+typedef struct loose_win_s {
+    sfSprite *w_sp;
+    sfSprite *l_sp;
+    sfTexture *l_tx;
+    sfTexture *w_tx;
+    sfMusic *m_w;
+    sfMusic *m_l;
+}loose_win_t;
+
 // structure for my settings menu
 typedef struct settings_menu {
     sfRenderWindow *window;
@@ -265,7 +274,20 @@ typedef struct enemy_s {
     sfClock *clo_d;
     sfTime time_d;
     int life;
+    sfSprite *sprt_d;
+    sfTexture *txt_d;
+    sfIntRect rect_d;
+    sfVector2f pos_d;
+    sfVector2f scale_d;
+    sfVector2f p_pos_d;
+    sfClock *clo_a;
+    sfTime time_f;
+    sfClock *clo_hit_a;
+    sfTime time_hit_a;
+    sfClock *clo_f;
+    sfTime time_a;
 
+    int life_d;
 }enemy_t;
 
 // main structure
@@ -448,6 +470,7 @@ typedef struct global_s{
 
 // src/character/ :
     // player_movements.c
+    void enemy_animation_d(enemy_t *enemy, global_t *glob);
     void move_sprites(global_t *all);
 
     // player_collisions.c
@@ -480,7 +503,7 @@ typedef struct global_s{
     // init_map.c
     void init_window(global_t *all);
     void eventclose(global_t *all);
-    void screenopen(global_t *all);
+    int screenopen(global_t *all);
     void init_value(global_t *all);
     void game_events(global_t *all);
 

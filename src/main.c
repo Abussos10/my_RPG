@@ -6,7 +6,6 @@
 */
 
 #include "../include/rpg.h"
-
 int usage(global_t *all)
 {
     init_window(all);
@@ -21,6 +20,9 @@ int usage(global_t *all)
     all->enemy->clo = sfClock_create();
     all->enemy->clo_hit = sfClock_create();
     all->enemy->clo_d = sfClock_create();
+    all->enemy->clo_a = sfClock_create();
+    all->enemy->clo_f = sfClock_create();
+    all->enemy->clo_hit_a = sfClock_create();
     all->player->life = 0;
     return (0);
 }
@@ -41,6 +43,7 @@ int main(void)
     menu_loop(menu, window, all);
     initialize_all(all);
     screenopen(all);
+    check_win_or_lose(screenopen(all), all);
     free(all);
     return (0);
 }
