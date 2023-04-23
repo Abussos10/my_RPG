@@ -46,15 +46,8 @@ void screenopen(global_t *all)
         }
         game_events(all);
         if (LUH->health_status == 0) break;
-        if (all->enemy->life > 0) {
+        if (all->enemy->life > 0)
             fight(all), RENDER(all->settings.window, all->enemy->sprt, NULL);
-        }
-        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
-            RENDER(all->settings.window,
-            all->player->npc->b_sp, NULL);
-            sfSound_play(all->music->sound);
-        }
-        printf("sword_status = %i\n", LUI->sword_status);
         if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
             break;
         sfRenderWindow_display(all->settings.window);
@@ -74,6 +67,11 @@ void game_events(global_t *all)
     RENDER(all->settings.window, all->mask_iso->sprite, NULL);
     draw_npc(all->player->npc, all);
     inventory_render(all); health_bar_render(all);
+    if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 0) {
+        RENDER(all->settings.window,
+        all->player->npc->b_sp, NULL);
+        sfSound_play(all->music->sound);
+    }
 }
 
 // function to initialize some useful value in my struct
