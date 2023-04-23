@@ -38,7 +38,7 @@ SRC		=	./src/main.c										\
 			./src/menu/loosewin/init_screen.c 					\
 			./src/menu/loosewin/loop.c							\
 			./src/menu/loosewin/button_end.c					\
-			./src/map/caca.c
+			./src/map/update_enemy.c
 
 OBJ		=	$(SRC:.c=.o)
 
