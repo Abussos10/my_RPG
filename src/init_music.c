@@ -10,6 +10,8 @@
 void init_music_game(music_t *music, global_t *glob)
 {
     music->music = sfMusic_createFromFile("assets/main.ogg");
+    glob->end->m_l = sfMusic_createFromFile("assets/lose.ogg");
+    glob->end->m_w = sfMusic_createFromFile("assets/winaaa.ogg");
     init_sound(music, glob->player);
 }
 

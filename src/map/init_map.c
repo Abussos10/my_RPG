@@ -46,9 +46,14 @@ int screenopen(global_t *all)
             eventclose(all);
         }
         game_events(all);
-        if (LUH->health_status == 0) return (1);
-        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1)
+        if (LUH->health_status == 0) {
+            sfMusic_stop(all->music->music);
+            return (1);
+        }
+        if (init_meeting_zone(all->player) == 1 && LUI->sword_status == 1) {
+            sfMusic_stop(all->music->music);
             break;
+        }
         sfRenderWindow_display(all->settings.window);
     }
     return (0);

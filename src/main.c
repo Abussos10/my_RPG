@@ -16,7 +16,7 @@ int check_win_or_lose(int index, global_t *all, window_t *window)
     return (0);
 }
 
-int usage(int ac, char **av, global_t *all)
+int usage(int ac, char **av, global_t *all, menu_t *menu)
 {
     init_screen(all);
     init_window(all);
@@ -50,7 +50,7 @@ int main(int ac, char **av)
     all->player->npc = malloc(sizeof(npc_t));
     all->enemy = malloc(sizeof(enemy_t));
     all->end = malloc(sizeof(loose_win_t));
-    usage(ac, av, all);
+    usage(ac, av, all, menu);
     if (!(all->settings.window)) return 84;
     menu_loop(menu, window, all);
     initialize_all(all);
