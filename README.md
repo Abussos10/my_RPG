@@ -36,7 +36,7 @@ To run the game, follow these steps:
     ```  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**5.** Enjoy playing the RPG !
 
-![Screenshshot](assets/readme_screenshots/RPG_main_menu.jpg)
+![Screenshot](assets/readme_screenshots/RPG_main_menu.jpg)
 ## Conclusion
 
 We, as a team of three, consisting of two developers and a graphic designer, have worked on this project. Although our RPG project is relatively short in duration, we are proud of the functional and visually appealing game we have created. 
